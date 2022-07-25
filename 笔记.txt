@@ -1,0 +1,2121 @@
+您好，我叫慕雨伦，1999年出生，毕业于长春工业大学数字媒体技术专业，曾经在学校的时候自己写了两个项目，分别是商品管理系统和考证信息网
+使用的技术有SSM，SpringBoot，Mysql，在商品管理系统中，采用前后端分离和分布式架构，还使用了一些SpringCloud技术，完成后使用docker部署到Linux服务器中，另一个项目参加大创比赛获得校级奖
+
+1.Java基础
+
+	1.抽象类
+	抽象类无法直接创建对象，只能被子类继承后，创建子类对象。
+	子类需要继承抽象父类并完成最终的方法实现细节(即重写方法，完成方法体)。
+	而此时，方法重写不再是加强父类方法功能，而是父类没有具体实现，子类完成了具体实现，我们将这种方法重写也叫做实现方法。
+
+	1）抽象方法必须为public或者protected（因为如果为private，则不能被子类继承，子类便无法实现该方法），缺省情况下默认为public；
+	2）抽象类不能直接实例化，需要依靠子类采用向上转型的方式处理；
+	3）抽象类必须有子类，使用extends继承，一个子类只能继承一个抽象类；
+	4）子类（如果不是抽象类）则必须覆写抽象类之中的全部抽象方法（如果子类没有实现父类的抽象方法，则必须将子类也定义为为abstract类。）；
+	
+	一、与具体类比较
+	   1、抽象类不能直接实例化，并且对抽象类使用 new 运算符会导致编译时错误。虽然一些变量和值在编译时的类型可以是抽象的，但是这样的变量和值必须或者为 null，或者含有对非抽象类的实例的引用（此非抽象类是从抽象类派生的）。
+   	   2、允许（但不要求）抽象类包含抽象成员。
+	   3、抽象类不能被密封。
+
+	二、与接口比较
+	   抽象类表示该类中可能已经有一些方法的具体定义，但是接口就仅仅只能定义各个方法的界面（方法名，参数列表，返回类型），并不关心具体细节
+
+	final关键字
+	1.修饰类不能被继承
+	2.修饰方法不能被重写
+	3.变量为常量
+
+	==与equals
+		==：	是判断两个对象的地址是否相同
+		equals：	没重写时与==相同，重写后判断内容是否相同
+
+	hashcode()与equals
+		在hashSet中存入值时，先根据hashcode()判断位置，位置不为空，则通过equals判断内容是否相同
+		重写hashcode()，两个对象内容相同，可能hash不同
+		重写equals()，两个对象内容相同，但地址不同
+		
+	
+	Byte：1
+	short：2
+	Integer：4
+	Long：8
+	Double：8
+	Float：4
+	
+
+	2.StringApi
+
+	StringBuilder	单线程
+	StringBuffer	多线程
+
+	底层为final修饰的char[]
+	stringbuilder
+	stringbuffer是线程安全的
+	1.substring(from,end)(含头不含尾)
+		截取一串字符串的一串子字符串，从from位置的字母(包括from)到end(不包括end位置)的字符串。
+	2.split()  就是将str字符串分割为四个子字符串，一般化会和上面的几个混用
+		String str = "you can you up";
+		String[] str1 = str.split(" ");
+		
+		split(substring(0,i));
+	3.trim();
+
+		3.1.去除字符串开头和结尾的空字符(空格,tab等)
+		3.2.Java中字符串创建不可改变，所以trim()后的字符串是新字符串
+		trim()操作后会返回新字符串，创建新字符串对象，未修改就返回原字符串对象。
+		trim ()仅去除前后空字符，不会去除中间空字符。
+	4.charAt()
+		4.1.charAt(index)，返回字符串该下标的字符
+		4.2.字符'0'  对应 48
+	5.toString()和valueOf()的区别
+		xx对象.toString();必须先创建对象，再调用对象的toString()方法
+		String.valueOf(XX对象):静态方法，不需要创建任何对象，就可以直接调用
+		大多数valueOf方法调用的都是toString()方法，建议大家用valueOf方法，因为valueOf在没有对象也可以用，可以避免空指针异常
+	6.contains()是否包含
+	
+    	indexOf()：查询字符串首次出现的下标位置
+    	lastIndexOf():查询字符串最后出现的下标位置
+    	contains(): 查询字符串中是否包含另一个字符串
+   	toLowerCase(): 把字符串全部转换成小写
+    	toUpperCase(): 把字符串全部转换成大写
+    	length(): 查询字符串的长度
+    	trim(): 去掉字符串首尾空格
+    	replace():替换字符串中的某些字符
+    	split(): 把字符串分割并返回字符串数组
+    	join(): 把字符串数组转为字符串
+	
+	3.常见的异常
+	
+	1.java.lang.NullPointerException
+		空指针异常，调用了未初始化的对象或者不存在的对象
+	2.java.lang.ClassNotFoundException
+		指定类不存在异常
+	3.java.lang.ArithmeticException
+		数学运算异常
+	4.java.lang.ArrayIndexOutOfBoundsException
+		数组下标越界异常
+	5.InterruptedException
+		线程sleep时被interrupt时会出现异常
+
+	异常分为两种
+		1.Exception：程序本身可以处理的异常可以通过catch来进行捕获，又分为两种
+			1.受检查异常（必须处理）：IOException（intruptedException）（如果受检查异常没有被 catch/throw 处理的话，就没办法通过编译 。）
+			2.不受检查异常（可以不处理）：RuntimeException：运算异常，数组越界，空指针异常（即使不处理不受检查异常也可以正常通过编译。）
+		2.Error：程序无法处理，不能用catch捕获，OutofMemory（oom）
+		
+	4.finally
+		1、finally中的代码总会被执行。
+		2、当try、catch中有return时，也会执行finally。return的时候，要注意返回值的类型，是否受到finally中代码的影响。
+		3、finally中有return时，会直接在finally中退出，导致try、catch中的return失效。
+		https://blog.csdn.net/imzoer/article/details/8037970
+
+	IO：
+		字节流：inputStream	OutputStream
+		字符流：Reader		Writer
+		适配器：InputStreamReader	OutputStreamWriter
+
+		buffer：缓冲
+		
+		适配器模式
+
+		序列化：实现Serializable接口
+		禁止序列化：transient修饰，不被序列化，被序列化为0或null
+
+	容器：
+		Collections API:
+			void reverse(List list)//反转
+			void shuffle(List list)//随机排序
+			void sort(List list)//按自然排序的升序排序
+			void sort(List list, Comparator c)//定制排序，由Comparator控制排序逻辑
+			void swap(List list, int i , int j)//交换两个索引位置的元素
+			void rotate(List list, int distance)//旋转。当distance为正数时，将list后distance个元素整体移到前面。当distance为负数时，将 list的前distance个元素整体移到后面
+	
+			int binarySearch(List list, Object key)//对List进行二分查找，返回索引，注意List必须是有序的
+			int max(Collection coll)//根据元素的自然顺序，返回最大的元素。 类比int min(Collection coll)
+			int max(Collection coll, Comparator c)//根据定制排序，返回最大元素，排序规则由Comparatator类控制。类比int min(Collection coll, Comparator c)
+			void fill(List list, Object obj)//用指定的元素代替指定list中的所有元素
+			int frequency(Collection c, Object o)//统计元素出现次数
+			int indexOfSubList(List list, List target)//统计target在list中第一次出现的索引，找不到则返回-1，类比int lastIndexOfSubList(List source, list target)
+			boolean replaceAll(List list, Object oldVal, Object newVal)//用新元素替换旧元素
+
+		List： 	有序  可重复  	
+			arrayList 查询快  实现了randomAccess接口（只是标识）  支持快速随机访问
+			LinkedList  增删快  	  
+
+		set：	无序 不可重复
+			HashSet 底层为HashMap  使用键当做值  
+				存入值时 先使用HashCode() 判断是否有相同的hash值，如果相同再使用equals() 判断内容是否相同  如果相同加入失败
+			LinkedHashSet
+			TreeSet
+
+		Map： 	
+			HashMap：键值对  数组+链表+红黑树
+			LinkedHashMap
+			TreeMap
+
+		ArrayList：
+			初始化时为空数组，只有当add()方法时才会进行扩容，默认初始大小为10
+			ensureExplicitCapacity(minCapacity); 添加时判断容器是否能装下数组中的数据个数 size+1 不能则进行扩容 
+			grow(); 当前容量 + 当前容量 >> 1 （1.5倍）
+			扩容时使用 Array.copyof(a, 20)【将数组复制到新创建的大容量数组中】
+			添加 或 删除时 使用system.arraycopy  创建出新数组  释放出需要位置 进行添加或删除
+			old = [1] [2] [3] [4] [5]
+			new=[1] [2] [X] [3] [4] [5]
+
+		HashMap：
+			数组+链表+红黑树	尾插法
+
+			Put()：默认容量为16
+			初始化时为空，添加时判断是否为空，为空则resize()，不为空则计算key值对应的位置，位置上为空则直接添加，不为空则判断key值是否存在，
+			存在直接替换，不存在判断是否为链表，是则加入，不是则加入红黑树，链表长度超过8则转变为红黑树，添加后判断++size是否大于阈值，大于则resize扩容 
+
+			hash()：
+				hashCode ^ (hashCode >>> 16) 	&   与			|   或		^   异或
+								都为1才为1，不然为0	有1为1，不然为0	不同为1，相同为0	
+
+				>>补码右移			补码为反码 + 1
+				>>>补码右移无视正负		正数的反码为本身
+
+			resize()：
+				位置计算 （容量n - 1） & hash  容量为2的n次幂  为1000.....    -1后为   0111....  与hash进行与操作可以更加均匀
+				扩容时将旧数组遍历放入新数组中，根据hash() 方法得到的hash值 与 旧容量长度 进行 &与操作 
+				因为容器长度为n的2次幂 1000...  所以结果只能得到 1 或 0，之后重新放入
+				0为地位		1为高位
+						
+		红黑树
+			性质：
+				1.每个节点要么是黑色要么是红色
+				2.根节点是黑色
+				3.每个叶子结点是黑色
+				4.每个红色节点的两个子节点一定是黑色，不能有两个红色节点相连
+				5.任意一节点到叶子结点的路径包含的黑节点数量相同
+		
+				变色：结点的颜色由红变黑
+				左旋：以某个节点作为支点，其右子节点变为旋转节点的父节点，右子节点的左子节点变为旋转节点的右子节点，左子节点保持不变
+				右旋：以某个节点作为支点，其左子节点变为旋转节点的父节点，左子节点的右子节点变为旋转节点的左子节点，右子节点保持不变
+
+          			插入后修复红黑树平衡的方法
+
+               		情况1：红黑树为空树，将root根节点染色为黑色
+               		情况2：插入节点的key已经存在，不需要处理
+               		情况3：插入节点的父节点为黑色，因为插入的为红色节点，所以路径上的黑色总数没有变化不需要处理
+               		情况4：插入节点的父节点为红色
+                   			情况4.1：叔叔节点存在，并且为红色（父-叔    双红），将两个节点染黑，爷爷节点染为红，并且以爷爷节点为当前节点再处理
+                   			情况4.2：叔叔节点不存在，或者为黑色，父节点为爷爷节点的左子树
+                      				情况4.2.1：插入节点为其父节点的左子节点（LL情况），将父节点染黑，爷爷节点染红，以爷爷节点右旋
+                       				情况4.2.2：插入节点为其父节点的右子节点（LR情况），以父节点进行一次左旋，得到（LL情况），以父节点为当前节点变为情况4.2.1
+                  			情况4.3：叔叔节点不存在，或者为黑色，父节点为爷爷节点的右子树
+                       				情况4.3.1：插入节点为其父节点的右子节点（RR情况），将父节点染黑，爷爷节点染红，以爷爷节点左旋
+                       				情况4.3.2：插入节点为其父节点的左子节点（RL情况），以父节点进行一次右旋，得到（RR情况），以父节点为当前节点变为情况4.3.1
+
+		树的深度：
+		public int getroot(root root) {
+			if(root == null) {
+				return 0;
+			}
+
+			int leftroot = getroot(root.left());
+			int rightroot = getroot(root.right());
+			return （leftroot > rigthroot ? leftroot : rightroot）+ 1;
+				
+		}
+
+		当前节点的高度：总深度 - 当前节点的深度
+
+		ConcurrentHashMap	https://snailclimb.gitee.io/javaguide/#/docs/java/collection/ConcurrentHashMap%E6%BA%90%E7%A0%81+%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90?id=_2-concurrenthashmap-18
+		
+		1.7：	Segment 数组 + HashEntry 数组 + 链表		segment不可扩容，初始容量固定，Reentrantlock 自旋得到锁后进行添加 同HashMap
+
+		1.8：	Node 数组 + 链表 / 红黑树	 
+			ConcurrentHashMap 的初始化是通过自旋和 CAS 操作完成的。里面需要注意的是变量 sizeCtl ，它的值决定着当前的初始化状态。
+
+			-1 说明正在初始化
+			-N 说明有N-1个线程正在进行扩容
+			表示 table 初始化大小，如果 table 没有初始化
+			表示 table 容量，如果 table　已经初始化。
+
+			如果有线程正在扩容则当前线程让出时间片 yield()
+			
+
+2.多线程
+
+	守护线程
+		java中的线程分为两种，用户线程和守护线程
+		用户线程全部结束JVM就会退出
+		守护线程比如GC
+	
+	并发（Concurrent）	：一个餐桌多人同时排队
+		在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行。
+	并行（Parallel）	：多个餐桌同时  多人排队
+		当系统有一个以上CPU时，当一个CPU执行一个进程时，另一个CPU可以执行另一个进程，两个进程互不抢占CPU资源，可以同时进行，这种方式我们称之为并行(Parallel)。
+
+	进程和线程
+
+		进程之间相互不影响  
+			进程私有：保证线程中的局部变量不被别的线程访问到
+			程序计数器：线程切换后能恢复到正确的执行位置
+			本地方法栈：本地方法栈则为虚拟机使用到的 Native 方法服务
+			虚拟机栈：每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息
+
+		线程之间 互相影响  
+			共享
+			堆：主要用于存放新创建的对象
+			方法区：主要用于存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。
+
+		方法体中的引用变量和基本类型的变量都在栈上，其他都在堆上
+
+	线程在main线程中运行run() 方法 并不能被视为多线程 只有调用start()方法 start()会执行run()这样才是多线程  因为执行start() 方法后线程会进入就绪阶段
+	sleep()不会释放锁		wait() 会释放锁
+	interrupt() 会对目标线程的中断标志设置为true，线程并不会立即停止，下次在标志位置继续执行
+	isinterrupted() 检测当前线程是否被中断， 不会清除中断标记
+	interrupted() 检测当前线程是否被中断，会清除中断标记
+
+	线程的生命周期
+	
+    	新建：就是刚使用new方法，new出来的线程；
+	就绪：就是调用的线程的start()方法后，这时候线程处于等待CPU分配资源阶段，谁先抢的CPU资源，谁开始执行;
+	运行：当就绪的线程被调度并获得CPU资源时，便进入运行状态，run方法定义了线程的操作和功能;
+	阻塞：在运行状态的时候，可能因为某些原因导致运行状态的线程变成了阻塞状态，比如sleep()、wait()之后线程就处于了阻塞状态，这个时候需要其他机制将处于阻塞状态的线程唤醒，比如调用notify或者notifyAll()方法。唤醒的线程不会立刻执行run方法，它们要再次等待CPU分配资源进入运行状态;
+	等待：等待通知唤醒
+	超时等待：有时间限制唤醒	
+	销毁：如果线程正常执行完毕后或线程被提前强制性的终止或出现异常导致结束，那么线程就要被销毁，释放资源;
+
+	一.线程池
+
+	主要特点为    1.线程复用    2.控制最大并发数    3.管理线程
+	一、降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗
+	二、提高响应速度。当任务到达时，任务可以不需要等待线程创建就能立即执行
+	三、提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控
+	
+	线程池五个状态
+	RUNNING ：能接受新提交的任务，并且也能处理阻塞队列中的任务。
+	SHUTDOWN：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown() 方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用 shutdown() 方法进入该状态）。
+	STOP：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态。
+	TIDYING：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入 TERMINATED 状态。
+	TERMINATED：在 terminated() 方法执行完后进入该状态，默认 terminated() 方法中什么也没有做。
+
+	七个参数
+	1.corePoolSize:线程池中的常驻核心线程数
+	2.maximumPoolSize：线程池中能够容纳同时执行的最大线程数，此值必须大于等于1
+	3.keepAliveTime：多余的空闲线程的存活时间
+		当前池中线程数量超过corePoolSize时，当空闲时间达到keepAliveTime时，多余线程会被销毁直到只剩下corePoolSize个线程为止
+	4.unit：keepAliveTime的单位
+	5.workQueue:任务队列，被提交但尚未被执行的任务
+	6.threadFactory：表示生成线程池中工作线程的线程工厂，用于创建线程，一般默认的即可
+	7.handler：拒绝策略，表示当队列满了，并且工作线程大于等于线程池的最大线程数时如何来拒绝请求执行的runnable的策略
+
+	四个策略
+	1.AbortPolicy:直接抛出RejectedExecutionException异常阻止系统正常运行
+	2.CallerRunsPolicy：“调用者运行”一种调节机制，该策略即不会抛弃任务，也不会抛出异常，而是将某些任务回退到调用者，从而降低新任务的流量
+	3.DiscardOldestPolicy：抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交当前任务
+	4.DiscardPolicy：该策略默默地丢弃无法处理的任务，不予任何处理也不抛弃异常。如果允许任务丢失，这是最好的一种策略
+
+	自定义线程池
+	CPU密集型 运算多 CPU一会全速运转 CPU核数+1个线程的线程池
+	IO密集型 1.IO密集型任务线程并不是一直在执行任务，则应配置尽可能多的线程 如CPU核数*2
+	              2.CPU核数 / 1 - 阻塞系数  阻塞系数在0.8 - 0.9之间
+
+	JMM模型		线程A			线程B
+			  ↓↑			  ↓↑
+			私有内存			私有内存
+			  ↓↑			  ↓↑
+				     主内存
+	synchronized加锁后会将用到的变量在线程的工作内存中清除，使用时直接从主内存中获取
+
+	volatile    内存可见性	不从线程的工作内存中获取，从主内存中获取
+	    	不保证原子性	i++ 执行时会将当前值value放入栈顶，将1放入栈顶，把两个值相加放入栈顶，最后赋给value
+	    	防止指令从排序	单例模式时 创建实例时分为三步	1.为实例分配内存空间	2.初始化实例	3.将实例指向分配的内存地址
+	cas    比较并交换    底层为unsafe类    使用CPU指令保证原子性   （原子类自增使用自旋锁）
+		缺点：有ABA问题
+		          循环时间长开销大
+	ABA问题使用AtomicReference类（对类进行包装）中的AtomicStampedReference加版本号解决ABA问题
+	
+	集合线程不安全 ：
+		1.故障现象 java.util.ConcurrentModificationException
+		2.导致原因
+			并发争抢修改导致，一个人正在写入，另外一个同学过来抢夺，导致数据不一致异常。并发修改异常。
+		3.解决方案
+			3.1 new Vector<>();
+			3.2 Collections.synchronizedList(new ArrayList<>());
+			3.3 new CopyOnWriteArrayList();
+
+		CopyOnWrite容器即写时复制的容器。往一个容器中添加元素的时候，不直接往当前容器object[] 添加，而是先将当前容器object[]进行copy复制出一个新的容器object[] newElements,
+			然后新的容器object[] newElements里添加元素，添加完元素后再将原容器的引用指向新的容器 setArray(newElements);。这样做的好处是可以对CopyOnWrite容器进行并发
+			的读而不需要加锁，因为当前容器不会添加任何元素。所以CopyOnWrite是一种读写分离的思想
+		弱一致性   get时获取到数组后获取指定下标的数据时，中间插入删除操作，下标为被删除元素，get到是被删除元素
+			使用iterator遍历时，虽然传递为指针引用，但修改时会将新的数组替换旧的数组，指针指向之前的数组。
+
+		set使用CopyOnWriteArraySet() set底层为hashmap  值存在键中 value值为常量 
+
+		HashMap 使用 ConcurrentHashMap
+	
+
+	二.锁
+	
+	悲观锁：	在数据被处理前会直接加锁
+	乐观锁：	只有在数据提交更新时才会检查冲突
+
+	公平锁：	是指多个线程按照申请锁的顺序来获取锁，类似排队打饭先来后到
+	非公平锁：是指多个线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁，在高并发的情况下，有可能造成优先级反转或饥饿现象
+	
+	独占锁：	指该锁一次只能被一个线程所持有。对ReentrantLock 和 Synchronized而言都是独占锁
+	共享锁：	指该锁可被多个线程所持有
+
+	可重入锁(递归锁)： 线程可以进入任何一个它已经拥有的锁所同步者的代码块
+
+	死锁：
+		互斥条件：	该资源任意一个时刻只由一个线程占用。
+		请求与保持条件：	一个进程因请求资源而阻塞时，对已获得的资源保持不放。
+		不剥夺条件：	线程已获得的资源在未使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。
+		循环等待条件：	若干进程之间形成一种头尾相接的循环等待资源关系。
+
+	synchronized	阻塞一个线程时 需要从用户状态 切换到内存状态，很耗时，会导致上下文切换	
+
+	! synchronized 和 Lock有什么区别？synchronized什么情况是锁对象什么时候锁全局?
+
+	！！！两种加锁方式
+	①不见不散	必须完成任务使用synchronized
+	②过时不候	使用reentrantlock设置超时时间
+	
+	1.原始构成
+	synchronized属于jvm层面    底层为汇编
+		monitorenter(底层是通过monitor对象来完成，其实wait/notify等方法也是依赖于monitor对象   只有在同步代码块中才可以调用wait/notify等方法) 			
+		monitorexit
+	Lock是具体类(java.util.concurrent.locks.Lock)是API层面的锁
+	2.使用方法
+	synchronized不需要用户去手动释放锁，当synchronized代码执行完后系统会自动让线程释放对锁的占用
+	ReentrantLock则需要用户去手动释放锁若没有主动释放锁，就有可能导致出现死锁现象
+	需要lock()和unlock()方法配合try/finally语句块来完成
+	3.等待是否可中断
+	synchronized不可中断，除非抛出异常或者正常运行完成
+	ReentrantLock可中断,
+			1.设置超时方法tryLock(long timeout, TimeUnit unit)
+			2.lockInterruptibly()放代码块中，调用interrupt()方法可中断
+	4.加锁是否公平
+	synchronized非公平锁
+	ReentrantLock默认为非公平锁可以传入参数进行设置 true 为公平锁 false 为非公平锁
+	5.锁绑定多个条件Condition  (ReentrantLock可以精确唤醒)
+	synchronized没有
+	ReentrantLock用来实现分组唤醒需要唤醒的线程们可以精确唤醒，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程
+
+	ThreadLocal
+	https://snailclimb.gitee.io/javaguide/#/docs/java/multi-thread/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3ThreadLocal%E5%85%B3%E9%94%AE%E5%AD%97
+
+		ThreadLocal对象可以提供线程局部变量，每个线程Thread拥有一份自己的副本变量，多个线程互不干扰。
+		Thread类有一个类型为ThreadLocal.ThreadLocalMap的实例变量threadLocals，也就是说每个线程有一个自己的ThreadLocalMap。
+		ThreadLocalMap有自己的独立实现，可以简单地将它的key视作ThreadLocal，value为代码中放入的值（实际上key并不是ThreadLocal本身，而是它的一个弱引用）。
+		每个线程在往ThreadLocal里放值的时候，都会往自己的ThreadLocalMap里存，读也是以ThreadLocal作为引用，在自己的map里找对应的key，从而实现了线程隔离。
+		ThreadLocalMap有点类似HashMap的结构，只是HashMap是由数组+链表实现的，而ThreadLocalMap中并没有链表结构。
+		
+		Hash算法
+		key.threadLocalHashCode & (len-1);
+		每当创建一个ThreadLocal对象，这个ThreadLocal.nextHashCode 这个值就会增长 0x61c88647 。
+		这个值很特殊，它是斐波那契数 也叫 黄金分割数。hash增量为 这个数字，带来的好处就是 hash 分布非常均匀。
+
+		Set() 方法
+		情况1、存入时hash位置为空，直接存入
+		情况2、存入时如果hash位置的key与存入相同，更新值
+		情况3、存入时如果hash位置被占用，key不同，向后遍历，遇到null，记录当前节点[stableSlot]，向前遍历找到位置最前的空节点(被GC)并记录[slotToExpunge]
+			从空节点[stableSlot]向后继续查找，如果有key值相同的节点直接替换value，否则直到遇到null节点，直接存入当前空节点空节点[stableSlot]
+			存入之后触发【探测式清理】从位置最前的空节点[slotToExpunge]向后清理过期节点，让正常数据尽可能存放在正确位置或离正确位置更近的位置
+
+		Get() 方法
+		情况1、hash位置上直接get
+		情况2、hash位置上key不相同，向后遍历，遇到null触发探测式清理，清理后节点位置都会被前移，在正确位置上或者靠近正确位置，
+			继续遍历，找到key，或者key不存在
+
+		扩容： 先进行探测式清理，如果达到阈值，直接扩容二倍，并将原节点重新计算位置，并放入新Map，同set()方法
+
+		InheritableThreadLocal： 在异步场景下是无法给子线程共享父线程中创建的线程副本数据的
+		
+
+	Atomic原子类
+	主要利用 CAS (compare and swap) + volatile 和 native 方法来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。
+	
+
+    	1.CountDownLatch  倒计数  到达数时才继续
+		CountDownLatch主要有两个方法，当一个或多个线程调用await方法时，调用线程会被阻塞。其他线程调用countDown方法会将计数器减1(调用countDown方法的线程不会阻塞)，当计数器的值变为零
+		时，因调用await方法被阻塞的线程会被唤醒，继续执行
+	        
+        	CountDownLatch countDownLatch = new CountDownLatch(6);
+        
+        	for (int i = 1; i <= 6; i++) {
+           		new Thread(() -> {
+                		System.out.println(Thread.currentThread().getName() + "\t离开教室");
+                		countDownLatch.countDown();
+            		}, String.valueOf(i)).start();
+        	}
+        	countDownLatch.await();
+        	System.out.println(Thread.currentThread().getName() + "\t班长关门走人");
+
+    	2.CyclicBarrier 循环 屏障
+	可循环使用的屏障。它要做的事情是让一组线程到达一个屏障时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活，线程进入屏障通过CyclicBarrier的await()方法
+        	CyclicBarrier cyclicBarrier = new CyclicBarrier(7 , () -> {System.out.println("******AAAA");});
+        
+        	for (int i = 1; i <= 7; i++) {
+            		final int tempInt = i;
+            		new Thread(() -> {
+                	System.out.println(Thread.currentThread().getName() + "\t收集到第：" + tempInt);
+                
+                	try {
+                    		cyclicBarrier.await();
+                	} catch (InterruptedException e) {
+                    		// TODO Auto-generated catch block
+                    		e.printStackTrace();
+                	} catch (BrokenBarrierException e) {
+                    		// TODO Auto-generated catch block
+                    		e.printStackTrace();
+                	}
+            		}, String.valueOf(i)).start();
+     	}
+    	3.Semaphore  信号
+	信号量主要用于两个目的，一个是用于对个共享资源的互斥使用，另一个用于并发线程数的控制  true false参数代表公平锁 非公平锁
+
+        	Semaphore semaphore = new Semaphore(1);
+        
+        	for (int i = 1; i <= 6; i++) {
+            		new Thread(() -> {
+                	try {
+                    		semaphore.acquire();
+                    		System.out.println(Thread.currentThread().getName() + "\t抢占到了车位");
+                    
+                   	 try {
+                        		TimeUnit.SECONDS.sleep(3);
+                    	} catch (Exception e) {
+                       		e.printStackTrace();
+                    	}
+                    
+                    	System.out.println(Thread.currentThread().getName() + "\t离开到了车位");
+                	} catch (InterruptedException e) {
+                    		// TODO Auto-generated catch block
+                    		e.printStackTrace();
+               		}finally {
+                    		semaphore.release();
+                	}
+            		}, String.valueOf(i)).start();
+        	}
+
+	三.阻塞队列
+
+	当阻塞队列是空时，从队列中获取元素的操作将会被阻塞
+	当阻塞队列是满时，往队列里添加元素的操作将会被阻塞
+	试图从空的阻塞队列中获取元素的线程将会被阻塞，直到其他的线程往空的队列插入新的元素
+	试图往已满的阻塞队列中添加新元素的线程同样也会被阻塞，直到其他的线程从队列中移除一个或多个元素或者完全清空队列后使队列变得空闲起来并后续新增
+
+	ArrayBlockingQueue:由数组结构组成的有界阻塞队列
+	LinkedBlockungQueue:由链表结构组成的有界阻塞队列(但大小默认值为Integer.MAX_VALUE)阻塞队列
+	SynchronousQueue:不存储元素的阻塞队列，也即单个元素的队列   
+			生产一个消费一个 不消费不继续生产
+	
+	API	抛出异常		特殊值(bollen)	阻塞	超时
+	插入	add(e)		offer(e)		put	offer(e, time, unit)
+	移除	remove()		poll()		take	poll(time, unit)
+	检查	element()		peek()		不可用	不可用
+
+	五.LockSupport
+
+	线程等待唤醒机制的加强版
+	park() 等待   被阻塞等待通知等待放行，它要通过需要许可证   （参数修改为0） UNSAFE.park(false, 0L)
+	unpark()  唤醒  发放通行证   （参数修改为1） 
+	底层unsafe类  类似Semaphore信号灯1 0 通行  Semaphore通常先唤醒会报错
+	可以先通知 后等待  一张通行证只能用一次 通行证最多只有一个  如果有凭证则会消耗掉这个凭证然后正常退出  如果没有凭证就等待凭证可用
+
+	六.AQS(AbstractQueuedSynchronizer)
+
+	AQS使用一个volitile的int类型的成员来表示同步状态，通过内置的FIFO队列来完成资源获取的排队工作将每条要去抢占资源的线程封装成一个Node节点来实现锁的分配，通过CAS完成对State值的修改
+	AQS=state+CLH队列  的双端队列         有阻塞就需要排队，实现排队必然需要队列
+	7.ConcruuentHashMap
+	Java7 中 ConcruuentHashMap 使用的分段锁，也就是每一个 Segment 上同时只有一个线程可以操作，每一个 Segment 都是一个类似 HashMap 数组的结构，它可以扩容，它的冲突会转化为链表。但是 Segment 的个数一但初始化就不能改变。
+
+	Java8 中的 ConcruuentHashMap 使用的 Synchronized 锁加 CAS 的机制。结构也由 Java7 中的 Segment 数组 + HashEntry 数组 + 链表 进化成了 Node 数组 + 链表 / 红黑树，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时会转化成红黑树，在冲突小于一定数量时又退回链表。
+
+	有些同学可能对 Synchronized 的性能存在疑问，其实 Synchronized 锁自从引入锁升级策略后，性能不再是问题，有兴趣的同学可以自己了解下 Synchronized 的锁升级。
+
+3.JVM
+	！方法体中的引用变量和基本类型的变量都在栈上，其他都在堆上
+
+	线程共享
+		堆：主要用于存放新创建的对象
+		1.7方法区：主要用于存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。
+		1.8元空间
+
+	线程私有：
+		程序计数器：线程切换后能恢复到正确的执行位置
+		本地方法栈：本地方法栈则为虚拟机使用到的 Native 方法服务
+		虚拟机栈：每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息
+
+	类加载器：
+		BootstrapClassLoader(根类加载器)
+		ExtensionClassLoader(扩展类加载器) 
+		AppClassLoader(应用程序类加载器) 
+
+	双亲委派机制：
+		在加载类时会先判断类是否已经被加载，向上传递到根类加载器，再依次向下，确保核心API不被改写
+
+	类声明周期：
+		加载——>连接——>初始化——>使用——>卸载
+			   |
+		验证——>准备——>解析
+	
+		
+					1/3							2/3
+	——————————————————————————————————		——————————————————————
+ 	|	 Eden		          |      | From Survivor0|      |  To Survivor1  |		|		Old Memory		|
+		8	：		1	：	1
+  		
+	大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，
+	当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。
+	
+	堆内存分配策略：
+		1.优先分配在Eden区
+		2.大对象直接进入老年代
+		3.存活年龄足够进入老年代
+
+	部分收集 (Partial GC)：
+    		新生代收集（Minor GC / Young GC）：只对新生代进行垃圾收集；
+    		老年代收集（Major GC / Old GC）：只对老年代进行垃圾收集。需要注意的是 Major GC 在有的语境中也用于指代整堆收集；
+    		混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。
+	
+	整堆收集 (Full GC)：收集整个 Java 堆和方法区。
+
+	判断一个对象已经死亡的方法
+		1.引用计数法
+			给对象中添加一个引用计数器，每当有一个地方引用它，计数器就加 1；当引用失效，计数器就减 1；任何时候计数器为 0 的对象就是不可能再被使用的。
+		2.可达性分析算法
+			称为 “GC Roots” 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。
+
+	强引用：内存不足也不会被GC
+	软引用：内存不足会被GC
+	弱引用：不管当前内存空间足够与否，都会回收它的内存
+	虚引用：在任何时候都可能被垃圾回收
+
+	垃圾收集算法：
+		复制算法：效率高，内存降低
+		标记-清除：效率低，需要遍历，会产生大量不连续碎片
+		标记整理：内存对象分散的时候，移动次数多，效率低
+
+	垃圾收集器
+			   新生代
+	Serial		Parallel		ParNew		
+			   老年代				G1
+	SerialOld		ParallelOld	CMS
+
+	Serial   		串行  单线程  	新生代使用复制算法	老年代使用标记-整理算法	Serial+SerialOld
+	
+	ParNew		多线程并行版Serial	新生代使用复制算法	老年代使用标记-整理算法	ParNew+SerialOld
+	
+	Parallel		与ParNew大致相同，关注吞吐量
+					新生代采用复制算法  老年代采用标记-整理算法	Parallel+ParallelOld
+
+	CMS	实现了让垃圾收集线程与用户线程（基本上）同时工作。
+		采用标记-清除算法
+
+		默认晋升年龄并不都是 15，这个是要区分垃圾收集器的，CMS 就是 6
+		
+		初始标记： 暂停所有的其他线程，并记录下直接与 root 相连的对象，速度很快 ；
+  		并发标记： 同时开启 GC 和用户线程，用一个闭包结构去记录可达对象。但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象。
+			因为用户线程可能会不断的更新引用域，所以 GC 线程无法保证可达性分析的实时性。所以这个算法里会跟踪记录这些发生引用更新的地方。
+		重新标记： 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，
+			远远比并发标记阶段时间短
+		并发清除： 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。
+
+	G1	
+		并行与并发：G1 能充分利用 CPU、多核环境下的硬件优势，使用多个 CPU（CPU 或者 CPU 核心）来缩短 Stop-The-World 停顿时间。
+				部分其他收集器原本需要停顿 Java 线程执行的 GC 动作，G1 收集器仍然可以通过并发的方式让 java 程序继续执行。
+		分代收集：虽然 G1 可以不需要其他收集器配合就能独立管理整个 GC 堆，但是还是保留了分代的概念。
+		空间整合：与 CMS 的“标记-清理”算法不同，G1 从整体来看是基于“标记-整理”算法实现的收集器；从局部上来看是基于“标记-复制”算法实现的。
+		可预测的停顿：这是 G1 相对于 CMS 的另一个大优势，降低停顿时间是 G1 和 CMS 共同的关注点，但 G1 除了追求低停顿外，还能建立可预测的停顿时间模型，
+				能让使用者明确指定在一个长度为 M 毫秒的时间片段内。
+	
+		G1 收集器的运作大致分为以下几个步骤：
+
+		初始标记
+		并发标记
+		最终标记
+		筛选回收
+
+		G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来) 。
+
+4.MYSQL
+
+	数据库中char和varchar的区别
+	char类型的长度是固定的，varchar的长度是可变的。
+	这就表示，存储字符串'abc'，使用char(10)，表示存储的字符将占10个字节（包括7个空字符）
+	使用varchar(10),，则表示只占3个字节，10是最大值，当存储的字符小于10时，按照实际的长度存储。
+
+	三大范式：
+		1.确保原子性
+		2.不允许表中有表
+		3.消除传递依赖
+
+          架构：
+	1.连接层：数据库连接池
+	2.服务层：对sql的分析和优化，缓存	SQL Interface（SQL接口，存储过程触发器，视图等）        Parser（SQL解析）        Optimizer（SQL优化器）        Caches&Buffers（缓存缓冲）
+	3.引擎层：可以更换引擎
+	4.存储层：将数据存储在设备的文件系统之上，并完成与数据引擎的交互
+	
+	常用数据引擎：
+		MyISAM：不支持主键 事务，表锁，只缓存索引，不缓存真实数据，表空间小，关注性能
+		       	在执行select前会自动给涉及的表加读锁，在执行增删改操作前会加写锁
+		InnoDB：支持主键，事务，行锁，适合高并发操作，不仅缓存索引还缓存数据，内存对性能有决定性作用，表空间大，关注点事务
+	
+	什么是事务：
+		A转钱给B		A-1000		视作一个事务，要么都成功，要么都失败		
+				B+1000 
+
+	ACID    
+		原子性：一个事务要么都成功，要么都失败
+		一致性：不一致回滚
+		隔离性：并发事务，要将两个事务分离开
+		持久性：数据库挂掉后，数据依然不变
+
+
+	事务隔离级别
+
+	读取未提交(read uncommitted)		更新丢失：两个事务选择同一行，提交前者会覆盖后者更新
+	读取已提交(read committed)			脏读：事务A读取到了事务B已修改但尚未提交的数据
+	可重复读(repeatable read)			不可重复读：事务A重新读取数据时读取到了事务B已经提交修改的数据
+	可序列化(serializable)			幻读：事务A重新读取数据时读取到了事务B提交的新增数据，不符合隔离性
+	
+	show variables like 'tx_isolation'
+
+	LBCC：	https://blog.csdn.net/qq_41376740/article/details/82346255?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161588621916780357285146%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=161588621916780357285146&biz_id=0&utm_med
+		共享锁：共享锁之间可以共享
+		排它锁：排它锁只能独占
+		意向锁：在添加共享锁或排它锁之前会添加意向锁，意向锁之间不会互斥，不与行级锁冲突的表级锁
+		意向共享锁：
+		意向排它锁：
+		
+		A想获取某一行的排它锁，先获取表的意向排它锁，并在第6条记录上获取行锁
+		B想获取表的共享锁，先获取表的意向共享锁，发现有A的意向排它锁存在，B被阻塞
+		C想获取另一行的排它锁，发现A的意向排它锁存在，因为意向锁之间不互斥，C获取到排它锁，并在第8条数据上获取行锁
+
+		https://blog.csdn.net/xqlovetyj/article/details/82894423
+		记录锁：锁住索引记录，而不是真正的数据记录，没有索引会在主键索引上加锁，如果要锁的列没有索引，会全表记录加锁
+		间隙锁：RR隔离级别，默认级别下才有，锁数据的间隙，8  (9,10) 11
+		临键锁：RR隔离级别，默认级别下才有，8  (9,11] 11  (12, 13) 14
+		防止幻读
+
+	MVCC:	https://www.jianshu.com/p/8845ddca3b23
+		隐式字段
+		DB_TRX_ID：6byte，最近修改(修改/插入)事务ID：记录创建这条记录/最后一次修改该记录的事务ID
+		DB_ROLL_PTR：7byte，回滚指针，指向这条记录的上一个版本（存储于rollback segment里）
+		DB_ROW_ID：6byte，隐含的自增ID（隐藏主键），如果数据表没有主键，InnoDB会自动以DB_ROW_ID产生一个聚簇索引
+		实际还有一个删除flag隐藏字段, 既记录被更新或删除并不代表真的删除，而是删除flag变了
+
+		Undo日志：
+			insert时会创建undo日志，事务回滚时会需要，事务提交后可以删除
+			update时会将修改后的数据保存，将回滚指针指向原来的数据，回滚时需要，快照读时需要找到当前事务的数据版本
+			delete时是逻辑删除，删除时复制原数据，将删除flag变为true，为true时读取到不会返回，将回滚指针指向原数据
+
+		Read View：就是事务进行快照读操作的时候生产的读视图，由查询时【所有未提交事务id数组  min_id为最小】和已创建事务最大id组成max_id 
+		
+			|已提交事务 |    |min_id --未提交与已提交事务--max_id|    |未开始事务|
+			min_id：创建时所有未提交事务id中最小的
+			max_id：已创建事务id最大的
+
+			在RR级别下，重复读时，会将当前数据的最近修改事务id：DB_TRX_ID 与快照中的id进行对比，如果 id < min_id则是可见的    id > max_id不可见
+			处于min_id <id<max_id区间时证明数据不可见，不可见则沿着回滚链表向后查找，直到找到符合的事务id
+			如果id = 当前事务的id数据可见，当前事务内的增删改操作需要自己可见
+
+	读取未提交：写时会加排它锁，读时不加锁		会导致脏读，不可重复读， 幻读
+	读取已提交RC：写时使用排它锁，读取时使用MVCC，每次select时都会获取快照	不会读取到没有提交的数据，解决脏读，但会有不能重复读，幻读问题
+	可重复读RR：写时使用排他锁，读取时使用MVCC，只使用第一次产生的快照	重复读时可以得到最初的数据，会有幻读的问题
+	序列化：使用LBCC，读写之前都要加锁，读时会加间隙锁，确保范围数据不变
+	
+	
+			
+	机读时从from开始
+	join	select * from table a A inner join table b B on A.key = B.key
+		select * from table a A left(right) join table b B on A.key = B.key(A加AB交集)(B加AB交集)
+		select * from table a A left(rifht) join table b B on A.key = B.key where B.key IS NULL (A除去与B的交集)(B除去与A的交集)
+		(mysql不支持)select * from table a A FULL OUTER JOIN join table b B on A.key = B.key (全连接)(mysql不支持)
+		(mysql不支持)select * from table a A FULL OUTER JOIN join table b B on A.key = B.key where A.key IS NULL OR B.key IS NULL(除去交集)(mysql不支持)
+		select * from table a A left join table b B on A.key = B.key		union(合并去重)		select * from table a A right join table b B on A.key = B.key
+		select * from table a A left join table b B on A.key = B.key where B.key IS NULL 	union(合并去重)	select * from table a A right join table b B on A.key = B.key where B.key IS NULL 
+	
+	索引：是排好序的快速查找数据结构	用于排序，快速查找		影响where和order by的速度
+		索引本身也很大，索引往往以索引文件的形式存储在磁盘上
+
+		提高索引效率，降低排序成本
+		增删改查时也会对索引进行操作，降低执行效率
+
+		优势：提高数据检索效率，降低数据库的IO成本
+		          降低数据排序的成本，降低了CPU的消耗
+		劣势：索引实际上也是一张表，保存了主键与索引字段，也是占用空间的
+		          虽然提高了查询速度，但是会降低更新速度
+
+		底层数据结构： B+tree
+			
+		
+			只有叶子结点存放数据，其他结点存放key并储存地址，叶子结点之间有链式结构，每次查询都会从根节点到叶子结点
+
+			B 树的所有节点既存放键(key) 也存放 数据(data)，而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。
+   			B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。
+			B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。
+				而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。
+			
+		
+		分类：单值索引：即一个索引只包含单个列，一个表可以有多个单列索引
+		          唯一索引：唯一索引的属性列不能出现重复的数据，但是允许数据为 NULL，一张表允许创建多个唯一索引。 
+				建立唯一索引的目的大部分时候都是为了该属性列的数据的唯一性，而不是为了查询效率。
+		          复合索引：即一个索引包含多个列
+		          CREATE [UNIQUE](唯一索引）INDEX indexName ON mytable(columnname)
+		          ALTER mytable ADD [UNIQUE](唯一索引）INDEX [indexName] ON (columnname)
+		          DROP INDEX[indexName] ON mytable
+		          SHOW INDEX FROM table_name
+
+		全值匹配
+		
+		最佳左前缀法则：查询从索引的最左前列开始并且不跳过索引中的列
+
+		哪些情况适合建索引：
+			不为 NULL 的字段 
+			被频繁查询的字段 
+			被作为条件查询的字段	
+			频繁需要排序的字段	
+			被经常频繁用于连接的字段 ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。
+						对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。
+
+		不适合建索引：
+			1.表记录太少	
+			2.频繁更新的字段	
+			3.不用做where条件的
+			4.字段重复数据多
+
+		索引失效：
+			1.在范围<>之后索引会失效
+				SELECT id.author_id FROM article WHERE category_id = 1AND comments > 1 ORDER BY views DESC LIMIT 1(type:ALL    Extra:    Using filesort)
+				建立索引create index idx_article_cv on article(category_id,views);         (type:range)
+			2.不再索引列上做任何操作(计算，函数，类型转换)，会导致索引失效而转向全表扫描
+			3.存储引擎不能使用索引中范围条件右边的列：范围之后全失效
+			4.尽量使用覆盖索引(只访问索引的查询(索引列和查询列一致))，减少select
+				SELECT name,age,pos FROM staffs WHERE name = 'july' AND age = 25 AND pos = 'dev'
+				SELECT * FROM staffs WHERE name = 'july' AND age = 25 AND pos = 'dev'
+			5.mysql在使用不等于(!= 或者<>)的时候无法使用索引导致全表扫描
+			6.is null，is not null也无法使用索引
+			7.like以通配符开头('%abc...')mysql索引失效会变成全表扫描
+				SELECT * FROM staffs WHERE NAME like‘July%’;有索引
+				SELECT * FROM staffs WHERE NAME like‘%July%’;没有索引
+				使用覆盖索引可以避免失效
+			8.字符串不加单引号索引失效
+				varchar一定要有单引号，不加单引号会引起类型转换
+			9.少用or，用它连接时索引会失效
+
+			使用AND时Optimizer会自动优化顺序
+
+		性能分析：1.MySql Query Optimizer 根据MySql自行判断最优的Sql语句，耗时最多
+			2.MySql常见瓶颈 	CPU饱和	IO装入数据时数据大与内存	服务器硬件的性能瓶颈
+		
+		EXPLAIN：可以模拟优化SQL查询语句，从而知道如何处理你的SQL语句，分析你的查询语句或是表结构的性能瓶颈
+			EXPLAIN+SQL语句
+
+			表头字段  id    select_type    table    type    possible_keys    key    key_len    ref    rows    Extra
+
+			*id:select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序	
+				id相同，执行顺序由上至下	id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行	id相同不同，同时存在
+			select_type:	1.SIMPLE：简单语句
+					2.PRIMARY：最后加载的
+					3.SUBQUERY：子查询
+					4.DERIVED：临时表
+					5.UNION：若第二个SELECT出现在UNION之后，则被标记为UNION    若UNION包含在FROM子句的子查询中，外层SELECT被标记为DERIVED
+					6.UNION RESULT：从UNION表获取结果的SELECT
+			table：显示这一行数据是关于哪张表的
+			*type：从最好到最差：system>const>eq_ref>ref>range>index>ALL
+				system:表只有一行记录是const的特例，平时不会出现
+				const:通过一次索引就找到了，const用于比较primary key或者unique索引（查询主键）
+				eq_ref:唯一索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或者唯一索引扫描（只有一条记录）
+				ref:非唯一索引扫描，返回匹配某个单独值的所有行（有多条记录）
+				range:只检索给定范围的行，使用一个索引来选择行。（给定范围）
+				index:全索引扫描
+				ALL:全表扫描
+			possible_keys:显示可能应用在这张表上的索引，但不一定被查询实际使用
+			*key:实际使用的索引		查询中若使用了覆盖索引，则该索引仅出现在key列表中
+			key_len:表示索引中使用的字节数（显示最大可能长度，并非实际使用长度    有误差）相同结果下精度越小越好
+			ref:显示索引的哪一列被使用了，如果可能大话是一个常数。哪些列或常量被用于查找索引列上的值
+			*rows:根据表统计信息及索引选用情况，大致估算出找到所需记录所需要读取的行数
+			*Extra:包含不适合在其他列显示但是很重要的数据：
+				*1.Using filesort：说明mysql会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL中无法利用索引完成的排序操作称为“文件排序”
+				*2.Using temporary：使用了临时表保存中间结果，MySQL在对查询结果排序时使用临时表。常见于排序order by 和分组查询group by
+				*3.Using index：覆盖索引(只从索引中就能够取得)，同时出现using where，表明索引被用来执行索引键值的查找，没有则表明索引用来读取数据而非执行查找操作
+				4.Using where：使用了where过滤
+				5.Using join buffer：使用了连接缓存
+				6.impossible where：where的值总是false，不能同来获取任何元素
+				7.select tables optimized away：没有group by子句的情况下进行优化
+				8.distict：优化distict操作
+
+			调优：
+
+			左外连接索引建立在右表
+			SELECT * FROM class  LEFT JOIN book ON class.card = book.card;
+			create index Y on book;	
+
+
+			小表驱动大表：有索引时
+				当B表的数据集必须小于A表的数据集时，用in优于exists
+				select * from A where id in (select id from B)
+				当A表的数据集小于B表的数据集时用exists优于in
+				select * from A where exists(select 1 from B where b.id = A.id)
+				
+				in：可以添加多个值 
+				exists：将主查询的数据，放到子查询中做条件验证，根据结果来决定主查询的数据结果是否得以保留
+					子查询中的 1 'X'会被省略，结果只会返回true或者false，根据结果来决定主查询的数据结果是否得以保留
+			ORDER BY：尽量使用Index方式排序，避免使用FileSort，遵循最佳左前缀
+				    如果不在索引列上，filesort有两种算法：
+					双路排序：进行两次扫描，第一次在磁盘中扫描出数据进行排序，然后第二次扫描已经排好序的列表，按照列表中的值重新从列表中读取对应的数据输出
+					单路排序：从磁盘中读取查询需要的所有列，按照order by列在buffer对它们进行排序，会占用更多的空间，因为每一行都保存在内存中了
+						 取出数据的容量可能超出了sort_buffer的容量大小，所以必须再次取出，反而导致了大量IO
+				调优：增大sort_buffer_size的参数设置
+				          增大max_length_for_sort_data
+				          不使用select*
+
+				排序不一致会导致索引失效
+			GROUP BY：同ORDER BY
+				    where高于having，能写在where的条件就不要去having限定了
+
+	查询截取分析：	1.观察一天
+			2.开启慢查询日志，设置阙值，比如超过5秒就抓取
+				默认不开启，开启后会影响性能
+				show variables like '%slow_query_log%'查看慢查询日志	‘long_query_time%’查看时间
+				set globl slow_query_log = 1开启			long_query_time  设置时间
+				show global status like '%slow_queries%'	查看当前有多少条慢sql
+			3.explain+慢SQL分析
+			4.show profile
+				是mysql提供可以用来分析当前会话语句执行的资源消耗情况。可以用于SQL的调优测量
+				默认关闭保存最近15条运行结果
+				show variables like 'profiling'	   查看
+				set profilinh = on	开启
+				show profiles查看结果
+				show profile cpu, block io for query + id
+				
+				converting heap to MyISAM查询结果太大，内存不够用
+				Creating tmp table创建临时表
+				Copying to tmp table on disk把内存中的临时表复制到磁盘
+				locked
+			5.DBA，进行SQL数据服务器的参数调优
+
+			全局查询日志
+	
+	锁机制：	1.表锁(偏读)
+			偏向MyISAM存储引擎，开销小，加锁快；无死锁；锁定粒度大，发生锁冲突的概率高，并发度最低
+			lock table 表名 read(write), 表名字2 read(write)手动增加锁
+			show lock table 显示锁
+			unlock tables;释放锁
+			show statis like 'table%'显示表争夺次数
+			读锁会阻塞写，但是不会阻塞读
+			写锁会把读写都阻塞
+
+		2.行锁(偏写)
+			自动上行锁，其他访问会堵塞
+			索引失效会将行锁变为表锁			
+			间隙锁：使用范围条件查询时会产生间隙锁，会锁定整个范围，及时键值不存在
+			如何锁定一行：	begin
+					select * from 表名 where a=8 for update;
+					commit;
+			show status like 'innodb_row_lock%';
+			
+		3.页锁
+	主从复制：1.master将改变记录到二进制日志(binary log)。
+		 2.slave将master的binary log events拷贝到它的中继日志(relay log)
+		3.slave重做中继日志中的事件，将改变应用到自己的数据库中。MySQL复制是异步的串行化的
+		
+		mysql版本一致
+		server-id=1
+		启用二进制文件(binary log)
+		从服务器id
+		打开二进制文件
+
+5.redis
+	命令不区分大小写  key区分大小写  help@....
+
+	String(字符类型)	set key value	get key	
+			ttl key 查看过期时间
+			删除	del
+			批量获取mset k1 v1 k2 v2	mget k1 k2    
+			增加减少INCR key        DECR key        INCRBY key increment        DECRBY key decrement
+			获取字符串长度  STRLEN key  
+			存在不创建 不存在创建 setnx key value	
+			set key value [EX seconds] [PX milliseconds] [NX|XX]
+			EX:key在多少秒后过期
+			PX:key在多少毫秒后过期
+			NX:当key不存在的时候，才创建key，效果等同于setnx
+			XX:当key存在的时候，覆盖key
+			应用场景:商品编号、订单号采用INCR命令生成	是否喜欢文章	阅读数
+
+	list(列表类型)	有序有重复
+			向列表左边添加元素    LPUSH key value
+			向列表右边添加元素    RPUSH key value
+			查看列表		  LRANGE key start stop
+			获取类表中元素的个数 LLEN key
+			应用场景:微信公众号
+
+	hash(散列类型)	Map<String ,map<k,v>>
+			一次设置获取一个字段值	HSET key field value        HGET key field
+			一次设置获取多个字段值	hmset		        hmget
+			获取所有字段		hgetall key
+			获取某个key内的全部数量	hlen
+			删除一个key		hdel
+			应用场景:购物车早期
+
+	set(集合类型)	无序无重复
+			添加元素			SADD key member
+			删除元素		 	SREM key member
+			获取集合中的所有元素	SMEMBERS key
+			判断元素是否在集合中	SISMEMBER key member
+			获取集合中的元素个数	SCARD key
+			从集合中随机弹出一个元素，元素不删除	SRANDMEMBER key [数字]
+			从集合中随机弹出一个元素，出一个删一个 SPOP key [数字]
+			集合的差集运算A-B        属于A但不属于B的元素构成的集合        SDIFF key [key...]
+			集合的交集运算A∩B       属于A同时也属于B的共同拥有的元素     SINTER key [key...]
+			集合的并集运算A∪B	     属于A或者属于B的元素合并后的集合     SUNION key [key...]
+			应用场景:抽奖小程序    朋友圈点赞	社交关系 :共同关注的人       我关注的人也关注他		qq推荐可能认识的人
+
+	zset(有序集合类型 sorted set)
+			向有序的集合中加入一个元素和该元素的分数
+			添加元素			ZADD key score member 
+			按照元素分数从小到大的顺序
+			返回索引从start到stop之间的所有元素	ZRANGE key start stop
+			获取元素的分数 		ZSCORE key member
+			删除元素			ZREM key member
+			获取指定分数范围的元素	ZRANGEBYSCORE key min max
+			增加某个元素的分数		ZINCRBY key increment member
+			获取集合中元素的数量	ZCARD key
+			获得指定分数范围内的元素个数 ZCOUNT key min max
+			按照排名范围删除元素	ZREMRANGEBYRAK key start stop
+			获取元素的排名从小到大	ZRANK key member
+			获取元素的排名从大到小	ZREVRANK key member
+			应用场景:根据商品销售对商品进行排序显示	抖音热搜
+	bitmap(位图) 
+		bitmap 存储的是连续的二进制数字（0 和 1），通过 bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。
+		我们知道 8 个 bit 可以组成一个 byte，所以 bitmap 本身会极大的节省储存空间。
+		适合需要保存状态信息（比如是否签到、是否登录...）并需要进一步对这些信息进行分析的场景。比如用户签到情况、活跃用户情况、用户行为统计（比如是否点赞过某个视频）。
+
+		setbit 20210308 UID 1
+		setbit 日期 用户名  状态（1或0）
+	hyperLogLog(统计)
+	GEO(地理)
+
+	缓存模式：
+		旁路缓存模式：
+			写 ：
+    			    先更新 DB
+    			    然后直接删除 cache 。
+			读 :
+			    从 cache 中读取数据，读取到就直接返回
+			    cache中读取不到的话，就从 DB 中读取数据返回
+			    再把数据放到 cache 中
+		读写穿透模式：
+			Read/Write Through Pattern 中服务端把 cache 视为主要数据存储，从中读取数据并将数据写入其中。cache 服务负责将此数据读取和写入 DB，从而减轻了应用程序的职责。
+			这种缓存读写策略小伙伴们应该也发现了在平时在开发过程中非常少见。抛去性能方面的影响，大概率是因为我们经常使用的分布式缓存 Redis 并没有提供 cache 将数据写入DB的功能。
+
+			写（Write Through）：
+			    先查 cache，cache 中不存在，直接更新 DB。
+			    cache 中存在，则先更新 cache，然后 cache 服务自己更新 DB（同步更新 cache 和 DB）。
+			读(Read Through)：
+			    从 cache 中读取数据，读取到就直接返回 。
+			    读取不到的话，先从 DB 加载，写入到 cache 后返回响应。
+
+	事务
+	Redis的单个命令都是原子性的，所以确保事务性的对象时命令集合
+	Redis将命令集合序列化并确保处于同一事务的命令集合连续且不被打断的执行
+	不支持回滚操作
+
+	MULTI：用于标记事务块的开始
+	EXEC：在一个事务中执行所有先前放入队列的命令，然后恢复正常连接状态
+	DISCARD：清楚所有先前在一个事务中放入队列的命令，然后恢复正常的连接状态
+	WATCH：当某个事务需要按条件执行时，就需要使用这个命令将给定的键设置为受监控的状态
+
+	内存大小：在64位操作系统下不限制内存大小，在32位操作系统下最多使用32GB内存
+		一般推荐Redis设置内存为最大物理内存的四分之三
+	info memory查看redis内存		config set maxmemory 设置内存
+
+	EVAL script numkeys key [key ...] arg [arg ...]	使用lua脚本
+
+	数据持久化：RDB   在指定时间间隔内将内存中的数据集快照写入磁盘
+		    AOF   以日志的形式来记录每个写操作
+		    不单独使用AOF 可以单独使用RDB 也可以都不用
+
+	主从复制       从←主→从     一主二仆     从机挂掉需要重新设置    主机挂掉从机等待主机上线     只要关系确立都会保持数据一致
+	薪火相传       主→从→从
+	哨兵模式	    从←主→从      留言协议    投票协议   主机挂掉 从机变主机 主机变从机
+
+	缓存穿透
+		大量请求的 key 根本不存在于缓存中，导致请求直接到了数据库上，根本没有经过缓存这一层。
+		
+		1）缓存无效 key
+		如果缓存和数据库都查不到某个 key 的数据就写一个到 Redis 中去并设置过期时间，具体命令如下： SET key value EX 10086 。
+		这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 Redis 中缓存大量无效的 key 。
+
+		2）布隆过滤器
+		某个元素存在，小概率会误判，可能不存在。布隆过滤器说某个元素不在，那么这个元素一定不在。
+		
+		将需要判断的元素加入布隆过滤器，经过多个hash计算后，在对应hash位置变为1，新加入的元素进行相同的hash计算，如果位置都为1，则存在，有一个为0则不存在
+			
+	缓存雪崩
+		缓存在同一时间大面积的失效，后面的请求都直接落到了数据库上，造成数据库短时间内承受大量请求
+
+	一个键是过期的是不是马上就被删除？
+	
+	三种策略：1.定时删除：立即删除对CPU压力大会产生大量的性能消耗，同时会影响数据的读取操作
+		 2.惰性删除：数据到达过期时间不做处理。等下次访问该数据时，如果未过期，返回数据，如果过期删除
+				对内存不友好，过期没有被访问到就永远不会被删除
+		3.定期删除：每隔一段时间执行一次删除过期键操作
+
+	内存淘汰策略：        1.noeviction：不会驱逐任何key（不使用）
+			2.allkeys-lru:对所有key使用lru算法进行删除（最常用）
+			3.volatile-lru:对 所有设置了过期时间的key使用lru算法进行删除
+			4.allkeys-random：多所有key随机删除
+			5.volatile-random:对所有设置了过期时间的key随机删除
+			6.volatile-ttl：删除马上要过期的key
+			7.allkeys-lfu：对所有key使用礼服算法进行删除
+			8.volatile-lfu：对所有设置了过期时间的key使用lfu算法进行删除
+
+			lru：最近最少使用
+			lfu：使用频率上
+
+	lru：本质是HashMap+DoubleLinkedList 时间复杂度是O(1)，哈希表+双向链表 	查用哈希增删用链表
+
+	1.重写linkedhashmap
+
+	public class LRUCacheDemo<K, V> extends LinkedHashMap<K, V> {
+    
+    	private int capacity;
+    
+    	public LRUCacheDemo(int capacity) {
+       		super(capacity, 0.75F, true);
+       	 	this.capacity = capacity;
+    	}
+
+    	@Override
+    	protected boolean removeEldestEntry(Entry<K, V> eldest) {
+        	// TODO Auto-generated method stub
+        	return super.size() > capacity;
+   	}
+	}
+
+	2.Map + doublelinkedlist		
+	    class Node<K, V> {
+        	K key;
+        	V value;
+        	Node<K,V> prev;
+        	Node<K,V> next;
+        
+       	 public Node() {
+            		this.prev = this.next = null;
+        	}
+        
+        	public Node(K key, V value) {
+            		this.key = key;
+           		this.value = value;
+            		this.prev = this.next = null;
+        	}
+
+        	@Override
+        	public String toString() {
+            		return "Node [key=" + key + "]";
+        	}
+        	}
+    	//2 构造一个双向队列，里面安放的就是Node
+    	class DoubleLinkedList<K,V> {
+        		Node<K,V> head;
+        		Node<K,V> tail;
+        
+        	public DoubleLinkedList() {
+            		head = new Node<>();
+            		tail = new Node<>();
+            		head.next = tail;
+            		tail.prev = head;
+        	}
+        
+        	public void addHead(Node<K,V> node) {
+            		node.next = head.next;
+            		node.prev = head;
+            		head.next.prev = node;
+            		head.next = node;
+        	}
+        
+        	public void removeNode(Node<K,V> node) {
+            		node.next.prev = node.prev;
+            		node.prev.next = node.next;
+            		node.prev = null;
+            		node.next = null;
+        	}
+        
+        	public Node getLast() {
+           		return tail.prev;
+        	}
+        
+        	public void sout() {
+            		Node<K, V> temp = head.next;
+            
+            	while(true) {
+                	if(temp == null) {
+                    	break;
+                	}
+                
+                System.out.println(temp);
+                temp = temp.next;
+            }
+        }
+    }
+    
+    	private int cacheSize;
+    	Map<Integer, Node<Integer, Integer>> map;
+    	DoubleLinkedList<Integer, Integer> doublelinkedlist;
+    
+    	public LRUCacheDemo(int cacheSize) {
+	        this.cacheSize = cacheSize;
+	        map = new HashMap<>();
+	        doublelinkedlist = new DoubleLinkedList<>();
+	    }	
+    
+	public int get(int key) {
+	        if(!map.containsKey(key)) {
+	            return -1;
+                        }
+        
+        	Node<Integer, Integer> node = map.get(key);
+        	doublelinkedlist.removeNode(node);
+        	doublelinkedlist.addHead(node);
+        
+        	return node.value;
+    	}
+    
+    	public void put(int key, int value) {
+        		if(map.containsKey(key)) {
+            		Node<Integer, Integer> node = map.get(key);
+	            node.value = value;
+	            map.put(key, node);
+            
+            		doublelinkedlist.removeNode(node);
+            		doublelinkedlist.addHead(node);
+        	}else {
+            		if(map.size() == cacheSize) {
+                	Node<Integer, Integer> lastNode = doublelinkedlist.getLast();
+                	map.remove(lastNode.key);
+                	doublelinkedlist.removeNode(lastNode);
+            	}
+            		Node<Integer, Integer> node = new Node<>(key, value);
+            		map.put(key, node);
+            		doublelinkedlist.addHead(node);
+        	}
+    }
+	
+
+6.spring
+	@ComponentScan 扫描@Controller @Service @Repository添加到容器中，可以指定规则，自定义规则
+	@Scope		默认是单例singleton，IOC容器会启动调用方法创建对象放到ioc容器中以后每次都从容器中拿    默认在容器启动时创建对象
+			@lazy懒加载容器启动不创建，第一次使用创建
+			prototype多例的    ioc容器启动并不会调用方法创建对象放在容器中，每次获取的时候才会调用方法创建对象
+			request同一次请求创建一个实例        session同一次会话创建一个实例
+	@bean		添加到容器
+	@Conditional：按照一定的条件进行判断，满足条件给容器中注册bean
+		         创建类继承Condition重写matches方法 可以获得bean工厂，类加载器，运行环境，bean定义的注册类
+			在方法上时满足条件才会注册	在类上时满足条件类中的bean才会注册
+		注册容器的方法：
+			1.@ComponentScan 包扫描+组件标注注解@Controller @Service @Repository@Component(自己写的)
+			2.@bean(导入第三方包)
+			3.@Import(快速给容器中导入一个组件)
+				1)@Import(要导入到容器中组件的全类名)
+				2)实现ImportSelector接口:返回需要导入的组件的全类名数组
+				3)实现ImportBeanDefinition接口，获得AnnotationMetadata和BeanDefinitionRegistry
+					把所有需要添加到容器中的bean使用BeanDefinitionRegistry.registerBeanDefinition手工注册
+			4.使用Spring提供的FactoryBean(工厂Bean)	继承FactoryBean类重写方法		将工厂类加入容器
+
+	Spring对@Configuration类会特殊处理；给容器中加组件的方法，多次调用都只是从容器中找组件
+
+	初始化方法：
+		1)指定初始化和销毁的方法
+			通过@Bean指定init-method和destroy-method
+		2)通过让Bean实现InitializingBean(定义初始化逻辑)	接口
+				DisposableBean(定义销毁逻辑)	   接口
+		3)使用JSR250中定义的两个注解
+			@PostConstruct：在Bean创建完成并且属性赋值完成；来执行初始化方法
+			@PreDestroy：在容器销毁bean之前通知我们进行清理工作
+		4)BeanPostProcessor接口：bean的后置处理器
+			在bean初始化前后进行一些处理工作
+			postProcessBeforeInitialization在初始化之前工作
+			postProcessAfterInitialization在初始化之后工作
+
+	bean的生命周期
+
+		doCreateBean() {
+			1.实例化bean对象
+			2.设置对象属性populateBean()
+			
+			initializeBean() {
+				3.检查Aware相关接口	beanNameAware	beanFactoryAware	applicationContextAware
+				4.BeanPostProcessor 对象，执行postProcessBeforeInitialization() 方法
+				5.如果Bean实现了InitializingBean接口，执行afterPropertiesSet()方法	处理@proConstruct注解	applyBeanPostProcessorsBeforInitialization(wrappedBean,beanName)
+				6.如果 Bean 在配置文件中的定义包含 init-method 属性，执行指定的方法
+				执行初始化invokeInitMethods()
+				7.BeanPostProcessor 对象，执行postProcessAfterInitialization() 方法	处理@PreDestroy注解	applyBeanPostProcessorsAfterInitialization(wrappedBean,beanName)
+				8.如果 Bean 实现了 DisposableBean 接口，执行 destroy() 方法
+				9.如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法
+			}
+		}
+
+		过程：
+		构造(对象创建)
+			单实例：在容器启动的时候创建对象	Singleton
+			多实例：在每次获取的时候创建对象	Prototype
+			存在session中session没有过期就一直存在	Session
+			存在请求中			request
+		
+		销毁：
+			单实例：在容器关闭的时候				Singleton
+			多实例：容器不会管理这个Bean，容器不会调用销毁方法	Prototype
+			session过期就会结束					session
+			请求结束就结束					request
+			调用destroy方法
+
+
+		Spring底层对BeanPostProcess的使用：
+			bean赋值，注入其他组件，@Autowired，生命周期注解功能，@Async，xxx BeanPostProcessor
+
+	默认加在ioc容器中的组件，容器会调用无参构造器创建对象，再进行初始化赋值等操作
+
+	@Value：为Bean赋值    基本数值    SpEl#{}    ${}取出配置文件中的值(在运行变量里面的值)
+	@PropertySource读取外部配置文件中的K/V保存到运行的环境变量中
+
+	自动装配：
+		Spring利用依赖注入(DI)，完成对IOC容器中各个组件的依赖关系赋值
+		1.@Autowired:自动注入
+			1)默认优先按照类型去容器中找对应的组件:applicationContext.getBean(BookDao.class);如果找到就赋值
+			2)如果找到多个相同类型的组件，再将属性名的名称作为组件的id去容器中查找applicationContext.getBean(bookDao)
+			3)@Qualifier("bookDao"):指定需要装配的组件的id，而不是使用属性名
+			4)自动装配默认一定将属性赋值好，没有就会报错
+			    可以使用@Autowired(required=false)
+			5)@Primary，让Spring进行自动装配的时候，默认使用首选的bean
+			BookService{
+				@Autowired
+				BookDao bookDao;
+			}
+		2.@Resource(JSR250)和@Inject(JSR330)[java规范的注解]
+			@Resource：可以和@Autowired一样实现自动装配功能，没有支持@Primary和@Autowired(required=false)
+			@Inject：需要导入javax.inject的包，和Autowired的功能一样。没有required=false的功能
+		@Autowired是Spring定义；@Resource、@Inject都是java规范
+
+		AutowiredAnnotationBeanPostProcessor：解析完成自动装配功能
+		3.@Autowired：构造器，参数方法，属性	：1，标注在方法位置2.标注构造器上3.放在参数位置		都是从容器中获取参数组件的值    默认不写
+		
+		4.自定义组件想要使用Spring容器底层的一些组件(ApplicationContext, BeanFactory, xxx)
+			自定义组件实现XXXAware；在创建对象的时候，会调用接口规定的方法注入相关组件；Aware
+			把Spring底层一些组件注入到自定义的Bean中
+
+	Profile：
+		Spring为我们提供的可以根据当前环境，动态的激活和切换一系列组件的功能
+		开发环境、测试环境、生产环境
+		1.加了环境标识的bean，只有这个环境被激活的时候才能注册到容器中。默认是default环境
+		2.写在配置类上，只有是指定的环境的时候，整个配置类里面的配置才能开始生效
+	
+	AOP：指在程序运行期间动态的将某段代码切入到指定位置进行运行的编程方式
+		1.导入aop模块；SpringAOP（spring-aspects）
+		2.定义一个业务逻辑类(MathCalculator):在业务逻辑运行的时候将日志进行打印(方法之前、方法运行结束、方法出现异常、XXX)
+		3.定义一个日志切面类(LogAspects):切面类里面的方法需要动态感知MathCalculator.div运行到哪里然后执行
+			通知方法：
+				前置通知(@Before)：logStart:在目标方法(div)运行之前运行
+				后置通知(@After)：logEnd：在目标方法(div)运行之后运行
+				返回通知(@AfterReturning)：logReturn：在目标方法(div)正常返回之后运行
+				异常通知(@AfterThrowing)：logException：在目标(div)出现异常以后运行
+				环绕通知(@Around)：动态代理，手动推进目标方法运行(joinPoint.procced())
+		4.给切面类的目标方法标注何时何地运行(通知注解)
+		5.将切面类和业务逻辑类(目标方法所在类)都加入到容器中
+		6.必须告诉Spring哪个类是切面类(给切面类加一个注解)
+		*7.给配置类中加@EnableAspectJAutoProxy[开启基于注解的aop模式]
+
+		AOP原理：【看给容器中注册了什么组件，这个组件什么时候工作，这个组件的功能是什么】
+		1.@EnableAspectJAutoProxy是什么
+			@Import({AspectJAutoProxyRegistrar.class})：：给容器中导入AspectJAutoProxyRegistrar
+				利用AspectJAutoProxyRegistrar自定义给容器注册bean实现了ImportBeanDefinition中的RoorBeanDefinition
+				internalAutoProxyCreator  =   AnnotationAwareAspectJAutoProxyCreator
+			给容器中注册一个AnnotationAwareAspectJAutoProxyCreator（注解切面Aspect自动代理创建器）
+		2.AnnotationAwareAspectJAutoProxyCreator（是一个后置处理器(postprocess)也是一个Aware实现类）
+			AnnotationAwareAspectJAutoProxyCreator
+				->AspectJAwareAdvisorAutoProxyCreator
+					->AbstractAdvisorAutoProxyCreator
+						->AbstractAutoProxyCreator
+							implement SmartInstantiationAwareBeanPostProcessor,BeanFactoryAware
+						(关注后置处理器(在bean初始化完成前后做的事情))
+			AbstractAutoProxyCreator.setBeanFactory()
+			AbstractAutoProxyCreator.有后置处理器的逻辑
+
+			AbstractAdvisorAutoProxyCreator.setBeanFactory() ->initBeanFactory()（添加了这个方法）  重写
+
+			AnnotationAwareAspectJAutoProxyCreator.initBeanFactory()（重写）
+
+			流程：
+				1.创建IOC容器
+				2.注册配置类，调用refresh()刷新容器
+				3.registerBeanPostProcessors(beanFactory);注册bean的后置处理器来方便拦截bean的创建（遍历所有的BeanPostProcessor然后进行实例化）
+					1)先获取ioc容器已经定义了的需要创建对象的所有BeanPostProcessor
+					2)给容器中加别的BeanPostProcessor，将BeanPostProcessor根据实现的接口(order,priorityorder,没有实现的)做出区分
+					3)优先注册实现了priorityOrdered接口的BeanPostProcessors		priorityOrderedPostProcessors
+					4)再给容器中注册实现了Ordered接口的BeanPostProcessors		orderedPostProcessors
+					5)注册没实现优先级接口的BeanPostProcessors			nonOrderedPostProcessorNames
+					6)注册BeanPostProcessor，实际上就是创建BeanPostProcessor对象，保存在容器中
+						创建internalAutoProxyCreator的BeanPostProcessor【AnnotationAwareAspectJAutoProxyCreator】
+
+						1)创建Bean的实例	doCreateBean： instanceWrapper = this.createBeanInstance(beanName, mbd, args);
+						2)populateBean：给bean的各种属性赋值
+						3)initializeBean：初始化bean
+							1)invokeAwareMethods()Aware接口的方法回调	
+								因为实现了BeanFactoryAware接口所以调用AbstractAutoProxyCreator.setBeanFactory()
+								setBeanFactory()中调用initBeanFactory()创建了ReflectiveAspectJAdvisorFactory    和BeanFactory一起包装为
+								AnnotationAwareAspectJAutoProxyCreator
+							2)applyBeanPostProcessorsBeforeInitialization()应用后置处理器的postProcessBeforeInitialization方法
+							3)invokeInitMethods():执行自定义的初始化方发
+							4)applyBeanPostProcessorsAfterInitialization()应用后置处理器的postProcessAfterInitialization方法
+						4)BeanPostProcessor(AnnotationAwareAspectJAutoProxyCreator)创建成功
+					7)将实例化初始化完成的BeanPostProcessor放入orderedPostProcessors，并排序
+					8)将orderedPostProcessors放入BeanFactory中完成注册（registerBeanPostProcessors(beanFactory, (List)orderedPostProcessors);）
+
+============================以上是创建和注册AnnotationAwareAspectJAutoProxyCreator的过程===============================
+				AnnotationAwareAspectJAutoProxyCreator => InstantiationAwareBeanPostProcessor
+				
+				4.finishBeanFactoryInitialization(beanFactory);完成BeanFactory初始化工作，创建剩下的单实例Bean
+					1)遍历获取容器中所有的Bean，依次创建对象getBean(beanName)
+						getBean->doGetBean()->getSingleton()->
+					2)创建bean
+						【AnnotationAwareAspectJAutoProxyCreator在所有bean创建之前会有一个拦截，因为是InstantiationAwareBeanPostProcessor后置处理器
+						会调用】	
+						1)先从缓存中获取当前bean，如果获取到说明bean是之前创建过的；直接使用否则再创建    doGetBean()：  Object sharedInstance = this.getSingleton(beanName);
+							只要创建好的bean都被缓存起来		
+						2)createBean();创建bean	AnnotationAwareAspectJAutoProxyCreator会在任何Bean创建之前尝试返回（拦截器）
+							【BeanPostProcessor是在Bean对象创建完成初始化前后调用的】
+							【InstantiationAwareBeanPostProcessor是在创建Bean实例之前先尝试用后置处理器返回对象】
+							1)resolveBeforeInstantiation(beanName, mbdToUse);解析BeforeInstantiation
+								希望后置处理器在此能返回一个代理对象，如果能返回代理对象就使用，如果不能就继续执行
+
+								1)后置处理器先尝试返回对象（相当于拦截）
+
+									bean = applyBeanPostProcessorsBeforeInstantiation()
+										拿到所有后置处理器，如果是InstantiationAwareBeanPostProcessor
+										就执行后置处理器的postProcessBeforeInstantiation()
+										
+								      	if (bean != null) {
+			 							bean = this.applyBeanPostProcessorsAfterInitialization(bean, beanName);
+                    								}
+
+							2)doCreateBean(beanName, mbdToUse, args);真正的去创建一个bean实例和（3 . 6）中的流程相同
+							
+						
+				AnnotationAwareAspectJAutoProxyCreator【InstantiationAwareBeanPostProcessor】的作用：
+				1)每一个bean创建之前，调用postProcessBeforeInstantiation()
+					关心MathCalculator和LogAspect的创建
+					1)判断bean是否在advisedBeans中(advisedBeans保存了所有需要增强的bean)
+					2)判断当前bean是否是基础类型Advice  Pointcut  Advisor  AopInfrastructureBean  或者是否是切面（@Aspect）  【isInfrastructureClass()】
+					3)是否需要跳过【shouldSkip()】
+						1)获取候选的增强器(切面里的通知方法)【List<Advisor> advisors】
+							每一个封装的通知方法的增强器是InstantiationModelAwarePointcutAdvisor
+							判断每一个增强器是否是AspectJPointcutAdvisor类型的；返回true
+						2)永远返回false
+				2)doCreateBean实例化对象之后initializeBean()方法中调用postProcessAfterInitialization：
+					wrapIfNecessary（包装如果需要的情况下）
+					1)获取当前bean的所有增强器(通知方法) Object[]  specificInterceptors 【getAdvicesAndAdvisorsForBean()】
+						1.找到候选的所有增强器(找到哪些方法是需要切入当前bean方法的)	   【findAdvisorsThatCanApply】
+						2.获取到能在bean使用的增强器			【findAdvisorsThatCanApply】
+						3.给增强器排序	
+					2)保存当前bean在adviseBeans中	表示当前bean已经被增强处理了
+					3)如果当前bean需要增强，创建当前bean的代理对象
+						1)获取所有增强器(通知方法)
+						2)保存到proxyFactory
+						3)创建代理:	Spring自动决定
+							JdkDynamicAopProxy(config)	JDK动态代理	ObjenesisCglibAopProxy(config)  Cglib的动态代理
+
+						增强器中定义了切点Pointcut，通知父类Advice
+					4)给容器中返回当前组件使用cglib增强了代理对象
+					5)以后容器中获取到的就是这个组件的代理对象，执行目标方法的时候，代理对象就会执行 通知方法 的流程
+				3)目标方法执行时
+					容器中保存了组件的代理对象(cglib增强后的对象)，这个对象里面保存了详细信息(比如增强器，目标对象，XXX)
+					1)CglibAopProxy.intercept();拦截目标方法的执行
+					2)根据ProxyFactory对象获取要执行的目标方法的拦截器链
+						List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
+						1)List<Object> interceptorList保存所有拦截器  获取时传入长度 ( 一个默认的ExposeInvocationInterceptor和增强器 )
+						2) 遍历所有的增强器，将其转为Interceptor:
+							registry.getInterceptors(advisor);
+						3)将增强器转为List<MethodInterceptor>
+							如果是MethodInterceptor，直接加入到集合中
+							如果不是，使用AdvisorAdapter将增强器转为MethodIntercepter
+							转换完成返回MethodInterceptor数组
+			
+						拦截器链(每一个通知方法又被包装为方法拦截器，利用MethodInterceptor机制)
+
+
+					3)如果没有拦截器链，直接执行目标方法
+					4)如果有拦截器链，把需要执行的目标对象，目标方法，拦截器链等信息，传入创建一个CglibMethodInvocation对象
+						并调用Object retVal = mi.proceed();
+					5)拦截器链的触发过程；
+						1)如果没有拦截器执行 执行目标方法，或者拦截器的索引和拦截器数组-1大小一样(到了最后一个拦截器)  执行目标方法
+						2)链式获取每一个拦截器，拦截器执行invoke方法，invoke方法中调用peoceed方法，拦截器索引会+1 (递归调用)
+							索引与拦截器数目-1相等时调用目标方法
+							每一个拦截器等待下一个拦截器执行完成返回后再来执行      拦截器链的机制，保证通知方法与目标方法的执行顺序
+
+						从MethodInterceptor数组第一个开始执行proceed()，会调用invoke()，invoke()方法又会调用proceed()，
+						proceed()又会调用拦截器索引+1的拦截器的invoke()，直到最后一个拦截器调用完invoke()方法，会执行完拦截后再调用proceed()，
+						拦截器索引与拦截器数组-1相等时执行目标方法，返回上一层invoke()，执行拦截后再返回上一层invoke()，直到第一个
+						
+
+		总结：
+			1)、@EnableAspectJAutoProxy开启AOP功能
+			2)、@EnableAspectJAutoProxy会给容器中注册一个组件AnnotationAwareAspectJAutoProxyCreator
+			3)、AnnotationAwareAspectJAutoProxyCreator是一个后置处理器
+			4)、容器的创建流程：
+				1)、registerBeanPostProcessors()会注册后置处理器：创建AnnotationAwareAspectJAutoProxyCreator对象
+				2)、finishBeanFactoryInitialization()初始化剩下的单实例bean
+					1)、创建业务逻辑组件和切面组件
+					2)、AnnotationAwareAspectJAutoProxyCreator拦截组件创建过程
+					3)、组件创建完之后initializeBean() -> postProcessAfterInitialization() -> wrapIfNecessary()判断组件是否需要增强
+						是：切面的通知方法，包装成增强器(Advisor);给业务逻辑组件创建一个代理对象(cglib)
+						将代理对象替换原本对象放入单例池中
+			5)、执行目标方法：
+				1)、代理对象执行目标方法
+				2)、CglibAopProxy.intercept();
+					1)、得到目标方法的拦截器链	(增强器包装成拦截器MethodInterceptor)
+					2)、利用拦截器的链式机制，依次进入每一个拦截器进行执行
+					3)、效果：
+						正常执行：前置通知 -> 目标方法 -> 后置通知 -> 返回通知
+						出现异常：前置通知 -> 目标方法 -> 后置通知 -> 异常通知
+
+
+	声明式事务：
+		环境搭建：1.导入相关依赖
+				数据源、数据库驱动、Spring-jdbc模块
+			2.配置数据源、JdbcTemplate(Spring提供的简化数据库操作的工具)  操作数据
+			3.给方法标注上@Transactional表示当前方法是一个事务方法
+			4.@EnableTransactionManagement	开启基于注解的事务管理功能
+			5.配置事务管理器管理事务
+
+		原理：
+		1.@EnableTransactionManagement利用TransactionManagementConfigurationSelector
+			导入两个组件
+			AutoProxyRegistrar、ProxyTransactionManagementConfiguration
+		2.AutoProxyRegistrar：给容器中注册一个InfrastructureAdvisorAutoProxyCreator组件
+			利用后置处理器机制在对象创建以后，包装对象，返回一个代理对象(增强器),代理对象执行方法利用拦截器链进行调用
+
+		3.ProxyTransactionManagementConfiguration
+			1.给容器中注册事务增强器
+				1)事务增强器要用事务注解的信息，AnnotationTransactionAttributeSource解析事务注解
+				2)事务拦截器：
+					TransactionInterceptor：保存了事务属性信息，事务管理器     是一个MethodInterceptor
+					在目标方法执行的时候：
+						执行拦截器链(只有事务拦截器)
+						事务拦截器：
+							1)先获取事务相关的属性
+							2)再获取PlatformTransactionManager，如果事先没有添加指定任何TransactionManager
+								最终会从容器中按照类型获取一个PlatformTransactionManager
+							3)执行目标方法
+								如果异常，获取到事务管理器，利用事务管理回滚操作
+								如果正常利用事务管理器提交事务
+
+	事务的传播机制：https://zhuanlan.zhihu.com/p/148504094
+		方法A是一个事务的方法，方法A执行过程中调用了方法B，那么方法B有无事务以及方法B对事务的要求不同都会对方法A的事务具体执行造成影响，
+		同时方法A的事务对方法B的事务执行也有影响，这种影响具体是什么就由两个方法所定义的事务传播类型所决定。
+
+		REQUIRED(Spring默认的事务传播类型)：	如果当前没有事务，则自己新建一个事务，如果当前存在事务，则加入这个事务
+		SUPPORTS：当前存在事务，则加入当前事务，如果当前没有事务，就以非事务方法执行
+		MANDATORY：当前存在事务，则加入当前事务，如果当前事务不存在，则抛出异常，不会执行方法。
+		REQUIRES_NEW：创建一个新事务，如果存在当前事务，则挂起该事务。	在执行时，不论当前是否存在事务，总是会新建一个事务。
+		NOT_SUPPORTED：始终以非事务方式执行,如果当前存在事务，则挂起当前事务。在执行时，不论当前是否存在事务，都会以非事务的方式运行。
+		NEVER：不使用事务，如果当前事务存在，则抛出异常。这个方法不使用事务，并且调用我的方法也不允许有事务，如果调用我的方法有事务则我直接抛出异常。
+		NESTED：如果当前事务存在，则在嵌套事务中执行，否则REQUIRED的操作一样（开启一个事务）。
+			和REQUIRES_NEW的区别
+			REQUIRES_NEW是新建一个事务并且新开启的这个事务与原有事务无关，而NESTED则是当前存在事务时（我们把当前事务称之为父事务）会开启一个嵌套事务（称之为一个子事务）。
+			在NESTED情况下父事务回滚时，子事务也会回滚，而在REQUIRES_NEW情况下，原有事务回滚，不会影响新开启的事务。
+ 
+			和REQUIRED的区别
+			REQUIRED情况下，调用方存在事务时，则被调用方和调用方使用同一事务，那么被调用方出现异常时，由于共用一个事务，所以无论调用方是否catch其异常，事务都会回滚
+			而在NESTED情况下，被调用方发生异常时，调用方可以catch其异常，这样只有子事务回滚，父事务不受影响
+		
+
+	扩展原理：
+		BeanPostProcessor：bean后置处理器，bean创建对象初始化前后进行拦截工作的
+		1.BeanFactoryPostProcessor：beanFactory的后置处理器
+			在BeanFactory标准初始化之后调用，所有的bean定义已经保存加载到beanFactory中，但是bean的实例还未创建
+			1）ioc容器创建对象
+			2）invokeBeanFactoryPostProcessors(beanFactory)    执行BeanFactoryPostProcessor
+				如何找到所有的BeanFactoryPostProcessor并执行他们的方法
+				1）直接在BeanFactory中找到所有类型是BeanFactoryPostProcessor的组件，并执行他们的方法
+				2）在初始化创建其他组件前面执行
+		2.BeanDefinitionRegistryPostProcessor    extends    BeanFactoryPostProcessor
+			PostProcessBeanDefinitionRegistry();
+			Bean定义信息的保存中心，以后BeanFactory就是按照BeanDefinitionRegistry里面保存的每一个Bean定义信息创建bean实例
+			在所有bean定义信息将要被加载，bean实例还未创建
+			
+			优先于BeanFactoryPostProcessor执行
+			利用BeanDefinitionRegistryPostProcessor给容器中再额外添加一些组件
+	
+			原理流程：
+			1）创建IOC容器
+			2）refresh() -> invokeBeanFactoryPostProcessor(BeanFactory)；
+			3）从容器中获取到所有的BeanDefinitionRegistryPostProcessor组件
+				1.依次触发所有的postProcessBeanDefinitionRegistry()方法
+				2.再来触发postProcessorBeanFactory()方法BeanFactoryPostProcessor
+			4）再来从容器中找到BeanFactoryPostProcessor组件；然后依次触发PostProcessBeanFactory()方法
+
+		3.ApplicationListener：监听容器中发布的事件。事件驱动模型开发
+			public interface ApplicationListener<Eextends ApplicationEvent>
+			监听ApplicationEvent及其下面的子事件：
+			
+			步骤：
+				1）写一个监听器(ApplicationListener实现类)来监听某个事件（ApplicationEvent及其子类）
+					@EventListener
+					原理：使用EventListenerMethodProcessor处理器来解析方法上的@EventListener
+						实现了SmartInitializingSingleton
+
+					SmartInitializingSingleton原理：-> afterSingletonsInstantiated()
+						1）ioc容器创建对象并refresh();
+						2）finishBeanFactoryInitialization(beanFactory);初始化剩下的单实例bean
+							1）先循环创建所有的单实例bean 	getbean()
+							2）  获取所有创建好的单实例bean，然后再循环判断是否是SmartInitializingSingleton类型的，
+								如果是就调用afterSingletonsInstantiated();
+						2）把监听器加入到容器
+						3）只要容器中有相关事件的发布，我们就能监听到事件
+							ContextRefreshEvent：容器刷新完成（所有bean都完全创建）会发布这个事件
+							ContextClosedEvent：关闭容器会发布这个事件
+						4）发布一个事件
+							annotationConfigApplicationContext.publishEvent(new ApplicationEvent(new String("我发布的事件")) {});
+
+			原理：
+				ContextRefreshedEvent，IOCTest_Ext$1[source=我发布的事件]
+			1.ContextRefreshedEvent事件：
+				1）容器创建对象：refresh();
+				2）finishRefresh()；容器刷新完成会发布ContextRefreshedEvent事件
+			2.自己发布事件
+				3）publishEvent(new ContextRefreshedEvent(this))
+					事件发布流程
+						1）获取事件的多播器（派发器）：getApplicationEventMulticaster()
+						2）multicastEvent派发事件
+						3）获取到所有的ApplicationListener
+							for（final ApplicationListener<?> listener：getApplicationListeners(event, type)）
+							1）如果有Executor可以支持使用Executor进行异步派发
+								Executor executor = getTaskExecutor()
+							2）否则，同步的方式直接执行listener方法
+								拿到listener回调onApplicationEvent方法(实现接口时重写)
+			【事件多播器(派发器)】
+				1）容器创建对象：refresh();
+				2）initApplicationEventMulticaster()；初始化ApplicationEventMulticaster
+					1）先去容器中找有没有id = “ApplicationEventMulticaster”的组件
+					2）如果没有    this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanfactory)
+						并且加入到容器中，我们就可以在其他组件要派发事件时，自动注入这个ApplicationEventMulticaster
+
+			【容器中有哪些监听器】
+				1）容器创建对象：refresh();
+				2）registerListeners()；
+					从容器中拿到所有的监听器，把他们注册到ApplicationEventMulticaster中
+					String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false)
+					//将listener注册到ApplicationEventMulticaster中
+					getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName)
+
+	容器的refresh()
+		1.prepareRefresh()刷新前的预处理
+			1）initPropertySources()初始化一些属性设置；子类自定义个性化的属性设置方式
+			2）this.getEnvironment().validateRequiredProperties();检验属性的合法等
+			3）earlyApplicationEvents = new LinkedHashSet();保存容器中的一些早期事件
+		2.obtainFreshBeanFactory();获取beanFactory
+			1）refreshBeanFactory();刷新【创建】beanFactory；
+				在GenericApplicationContext的无参构造其中创建了一个this.beanFactory = new DefaultListableBeanFactory();
+				设置id
+			2）getBeanFactory()；返回刚才GenericApplicationContext创建的BeanFactory对象
+			3）将创建的BeanFactory【DefaultListableBeanFactory】返回
+		3.prepareBeanFactory(beanFactory);	BeanFactory的预准备工作(BeanFactory进行一些设置)
+			1）设置BeanFactory的类加载器，支持表达式解析器
+			2）添加部分BeanPostProcessor【ApplicationContextAwareProcessor】
+			3）设置忽略的自动装配的接口EnvironmentAware、EmbeddedValueResolverAware（默认忽略的，不能通过接口类型自动注入）
+			4）注册可以解析的自动装配；我们能直接在任何组件中自动注入：BeanFactory，ResourceLoader，ApplicationEventPublisher，ApplicationContext
+			5）添加BeanPostProcessor【ApplicationListenerDetector】
+			6）添加编译时的AspectJ
+			7）给BeanFactory中注册一些能用的组件：
+				environment【ConfigurableEnvironment】
+				systemProperties【Map<String, Object>】
+				systemEnvironment【Map<String, Object>】
+
+		4.postProcessBeanFactory(beanFactory)	；BeanFactory准备工作完成后进行的后置处理工作
+			1）子类通过重写这个方法来在BeanFactory创建并预准备完成以后做进一步的设置
+
+=========================================以上是BeanFactory的创建及预准备工作=============================================================
+
+		5.invokeBeanFactoryPostProcessors(beanFactory)；执行BeanDefinitionRegistryPostProcessor、BeanFactoryPostProcessors的方法
+			BeanFactoryPostProcessors：BeanFactory的后置处理器。在BeanFactory标准初始化之后执行的
+			两个接口  BeanFactoryPostProcessor、BeanDefinitionRegistryPostProcessor
+			1）执行BeanFactoryPostProcessor的方法
+				先执行BeanDefinitionRegistryPostProcessor
+				1）获取所有的BeanDefinitionRegistryPostProcessor
+				2）看优先级排序PriorityOrdered优先级接口的BeanDefinitionRegistryPostProcessor
+					PostProcessor.postProcessBeanDefinitionRegistry(registry)
+				3）再执行实现了Ordered顺序接口的BeanDefinitionRegistryPostProcessor
+					PostProcessor.postProcessBeanDefinitionRegistry(registry)
+				4）最后执行没有实现任何优先级或者顺序接口的BeanDefinitionRegistryPostProcessor
+					PostProcessor.postProcessBeanDefinitionRegistry(registry)
+				5）将确定的放入currentRegistryProcessors进行实例化后，清空currentRegistryProcessors
+
+				再执行BeanFactoryPostProcessor的方法
+				1）获取所有的BeanFactoryPostProcessor
+				
+				2）看优先级排序PriorityOrdered优先级接口的BeanFactoryPostProcessor
+					PostProcessor.postProcessBeanFactory()
+				3）再执行实现了Ordered顺序接口的BeanFactoryPostProcessor
+					PostProcessor.postProcessBeanFactory()
+				4）最后执行没有实现任何优先级或者顺序接口的BeanFactoryPostProcessor
+					PostProcessor.postProcessBeanFactory()
+				5）将确定的放入currentRegistryProcessors进行实例化后，清空currentRegistryProcessors
+
+		6.registerBeanPostProcessors(beanFactory);注册BeanPostProcessor（Bean的后置处理器）【拦截Bean的创建过程】
+			不同接口类型的BeanPostProcessor：在Bean创建前后的执行时机是不一样的
+			BeanPostProcessor、
+			DesteuctionAwareaBeanPostProcessor、
+			InstantiationAwareBeanPostProcessor、
+			SmartInstantiationAwareBeanPostProcessor、
+			MergerdBeanDefinitionPostProcessor【会被记录在internalPostProcessors】
+
+			1）获取所有的BeanPostProcessor；后置处理器都有优先级PriorityOrdered，Ordered指定优先级
+			2）先注册PriorityOrdered优先级接口的BeanPostProcessor；
+				把每一个BeanPostProcessor添加到BeanFactory中
+				beanFactory.addBeanPostProcessor(postProcessor)
+			3）再注册Ordered接口的
+			4）最后注册没有实现任何接口的
+			5）最后注册internalPostProcessors【MergerdBeanDefinitionPostProcessor】
+			6）注册一个ApplicationListenerDetetor来在Bean 创建完成后检查是否是ApplicationListener
+				如果是applicationContext.addApplicationListener((ApplicationListener<?>)bean)
+
+		7.initMessageSource();初始化MessageSource组件（做国际化功能，消息绑定，消息解析）
+			1）获取beanFactory
+			2）看容器中是否有id为MessageSource的组件
+				如果有赋值给MessageSource，如果没有创建一个DelegatingMessageSource
+					MessageSource：取出国际化配置文件中的某个key值；能按照区域信息获取
+			3）把创建好的MessageSource注册在容器中，以后获取国际化配置文件的时候可以自动注入MessageSource
+		
+		8.initApplicationEventMulticaster();初始化事件派发器
+			1）获取BeanFactory
+			2）从BeanFactory中获取applicationEventMulticaster
+			3）如果上一步没有配置    则创建一个SimpleApplicationEventMulticaster
+			4）将创建的ApplicationEventMulticaster添加到BeanFactory中，以后其他组件直接自动注入
+
+		9.onRefresh();留给子容器(子类)
+			1）子类重写这个方法，在容器刷新的时候可以自定义逻辑
+
+		10.registerListeners();给容器中将所有项目里面的ApplicationListener注册进来
+			1）从容器中拿到所有的ApplicationListener
+			2）将每个监听器添加到事件派发器中
+				getApplicationEventMulticaster().addApplicationListener(listener);
+			3）派发之前步骤产生的事件
+		
+		11.finishBeanFactoryInitialization(beanFactory);初始化所有剩下的单实例bean
+			1）beanFactory.preInstantiateSingletons();初始化剩下的单实例bean
+				1）获取容器中的所有Bean，一次进行初始化和创建对象
+				2）获取Bean的定义信息：RootBeanDefinition
+				3）Bean不是抽象的，是单实例的，不是懒加载的
+					1）判断是否是FactoryBean：是否是实现FactoryBean接口的Bean
+					2）不是工厂Bean。利用getBean(beanName)；创建对象
+						0.getBean(beanName)；ioc.getBean()；
+						1.doGetBean(name,null,null,false)；
+						2.Object sharedInstance = this.getSingleton(beanName);
+							先获取缓存中保存的单实例Bean。如果获取到说明这个Bean之前被创建过(所有创建过的单实例Bean都会被缓存起来)
+							从private final Map<String, Object> singletonObjects = new ConcurrentHashMap(256);获取
+						3.缓存中获取不到，开始Bean的创建对象流程
+						4.标记当前bean已经被创建(防止多线程重复创建)
+						5.获取Bean的定义信息RootBeanDefinition
+						6.获取当前Bean依赖的其他Bean，如果有按照getBean()的方式把依赖的Bean先创建出来【dependsOn】
+						7.启动单实例Bean的创建流程：
+							1）createBean(beanName, mbd, args);
+								1）resolveBeforeInstantiation(beanName, mbdToUse);让BeanPostProcessor先拦截返回代理对象
+									InstantiationAwareBeanPostProcessor：提前执行
+									先触发：PostProcessorBeforeInstantiation();	
+										如果返回bean的代理对象则说明Bean已经被实例化
+									如果有返回值：触发postProcessAfterInitialization();
+										调用后置处理器后置处理方法，跳过doCreateBean直接返回
+									一般情况下，bean应该没有被实例化，获取不到，执行doCreateBean。
+								2）如果InstantiationAwareBeanPostProcessor没有返回代理对象
+								3）beanInstance = this.doCreateBean(beanName, mbdToUse, args);创建Bean
+									1）【创建Bean实例】；createBeanInstance(beanName, mbd, args);
+										利用工厂方法或者对象的构造器创建实例
+									2）applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);
+										调用MergedBeanDefinitionPostProcessor
+										MergedBeanDefinitionPostProcessor.PostProcessorMergedBeanDefinition(mbd, beanType, beanName)
+									3）【Bean属性赋值】populateBean(beanName, mbd, instanceWrapper);
+										赋值之前
+										1）拿到InstantiationAwareBeanPostProcessor后置处理器
+											PostProcessorAfterInstantiation();
+										2）拿到InstantiationAwareBeanPostProcessor后置处理器
+											postProcessPropertyValues()
+										===========赋值之前=========
+										3）应用Bean属性的值；为利用setter方法进行赋值
+											appliPropertyValues(beanName,mbd, bw, pvs);
+									4）【Bean初始化】initializeBean(beanName, exposedObject, mbd);
+										1）【执行Aware接口方法】invokeAwareMethods(beanName, bean);执行XXXAware接口的方法
+											BeanNameAware/BeanClassLoaderAware/BeanFactoryAware
+										2）【执行后置处理器初始化之前】applyBeanPostProcessorsBeforeInitialization(bean, beanName);
+											processor.postProcessBeforeInitialization(result, beanName);
+										3）【执行初始化方法】invokeInitMethods(beanName, wrappedBean, mbd);
+											1）是否InitiaizingBean接口的实现，执行接口规定的初始化
+											2）是否自定义初始化方法
+										4）【执行后置处理器初始化之后】applyBeanPostProcessorsAfterInitialization(bean, beanName);
+											processor.postProcessAfterInitialization(result, beanName);
+									5）注册Bean的销毁方法：
+										是否实现DisposableBean接口
+								4）将创建的Bean添加到缓存中singletonObjects
+						【ioc容器就是这些Map；很多的Map保存了单实例Bean，环境信息。。。】
+					3）所有的Bean都利用getBean创建完成以后
+						检查所有的Bean是否是SmartInitializingSingleton接口，如果是就执行afterSingletonsInstantiated
+		12.finishRefresh();完成BeanFactory的初始化创建工作，IOC容器就创建完成
+			1）initLifecycleProcessor()初始化和生命周期有关的后置处理器LifecycleProcessor
+				默认从容器中找是否有，没有则用默认的DefaultLifecycleProcessor
+				加入到容器中
+				写一个LifecycleProcessor的实现类，可以再BeanFactory
+					void onRefresh();
+					void onClose(); 	在创建和结束时执行一些方法
+			2）getLifecycleProcessor().onRefresh();
+				拿到前面定义的生命周期处理器(BeanFactory):回调onRefresh()
+			3）publishEvent((ApplicationEvent)(new ContextRefreshedEvent(this)));发布容器刷新完成事件
+			4）LiveBeansView.registerApplicationContext(this);
+
+	servlet3.0：
+		Shared libraries(共享库)   /  runtimes  pluggability(运行时插件能力)
+		
+		1.Servlet容器启动会扫描，当前应用里面每一个jar包
+			ServletContaionerInitializer的实现
+		2.提供ServletContainerInitializer的实现类
+			必须绑定在，META-INF/services/javax.servlet.ServletContainerInitializer
+			文件的内容就是ServletContainerInitializer实现类的全类名
+
+		总结：容器在启动应用的时候，会扫描当前应用每一个jar包里面	META-INF/services/javax.servlet.ServletContainerInitializer
+			指定实现类，启动并运行这个实现类的方法
+
+
+		1.web容器在启动的时候，会扫描每个jar包下的META-INF/services/javax.servlet.ServletContainerInitializer
+		2.加载这个文件指定的类SpringServletContainerInitiazer
+		3.spring的应用一启动会加载感兴趣的WebAppliationInitializer接口下的所有组件
+		4.并且为WebApplicationInitializer组件创建对象(组件不是接口，不是抽象类)
+			1）AbstractContextLoaderInitializer：创建根容器：createRootApplicationContext()；
+			2）AbstractDispatchServletInitializer：
+				创建了一个web的ioc容器：createServletApplicationContext();
+				创建了DispatherServlet：createDispatherServlet()
+				将创建的DispatherServlet添加到ServletContext中
+					getServletMappings();
+			3）AbstractAnnotationConfigDispatcherServletInitializer:注解方式配置的DispatcherServlet初始化器
+				创建根容器：createRootApplicationContext()
+					getRootConfigClasses()；传入一个配置类
+				创建web的ioc容器：createServletApplicationContext()；
+					获取配置类；getServletConfigClasses();
+		总结：
+			以注解方式来启动SpringMVC，继承AbstractAnnotationConfigDispatcherServletInitializer
+			实现抽象方法指定DispatcherServlet的配置信息
+	
+	定制SpringMVC：
+		1）@EnableWebMvc：开启SpringMVC定制配置功能
+			<mvc:annotation-driven>
+		2）配置组件（视图解析器、视图映射、静态资源映射、拦截器）
+
+	
+
+	循环依赖：
+		什么是循环依赖：多个bean之间相互依赖，形成了一个闭环。比如：A依赖于B、B依赖于C、C依赖于A
+			构造器方式注入依赖会形成套娃
+			以set方式注入依赖可以行的通
+			单例singleton支持循环依赖
+			原型Prototype多例是不支持循环依赖
+
+		DefaultSingletonBeanRegistry
+			一级缓存：singletonObjects(单例池)	存放已将经历了完整生命周期的Bean对象   			ConcurrentHashMap
+			二级缓存：earlySingletonObjects	存放早期暴露出来的Bean对象，Bean的生命周期未结束(属性还未填充完)	HashMap
+			三级缓存：singletonFactories		存放可以生成Bean的工厂					HashMap
+
+		只有单例的bean会通过三级缓存提前暴露来解决循环依赖的问题，而非单例的bean，每次从容器中获取都是一个新的对象，都会重新创建，所以非单例的bean是没有缓存的，不会将其放入三级缓存中
+	
+
+		假设A、B循环引用，实例化A的时候就将其放入三级缓存中，接着填充属性的时候，发现依赖了B，同样的流程也是实例化后放入三级缓存，接着去填充属性时又发现自己依赖A，这时候从缓存
+		中查找到三级缓存中的A，将A从三级缓存保存到二级缓存，没有AOP代理的话，直接将A的原始对象注入B，完成B的初始化后，进行属性填充和初始化，这时候B完成后，B将自身放入一级缓存
+		然后去完成剩下的A的步骤，A从一级缓存中找到B，A完成创建，A放入一级缓存，如果有AOP代理，就进行AOP处理获取代理后的对象A，注入B，走剩下的流程。
+		
+
+		1.调用doGetBean()方法，想要获取bean A，于是调用getSingleton()方法从缓存中查找bean A
+		2.在getSingleton()方法中，从一级缓存中查找，没有，返回null
+		3.doGetBean()方法中获取到的bean A为null，于是调用getSingleton()的重载方法(参数为ObjectFactory)
+		4.在getSingleton()方法中，先将beanA_name添加到一个集合中，用于标记该bean正在创建中。然后回调匿名内部类的createBean方法
+		5.进入AbstractAutowireCapableBeanFactory中的doCreateBean，先反射调用构造器创建出beanA的实例，判断是否为单例、是否允许提前暴露引用(对于单例一般为true)、
+			是否正在创建（即是否在第四步的集合中）。判断为true则将beanA添加到【三级缓存】中
+		6.对beanA进行属性填充，populateBean();，此时检测到beanA依赖于beanB，于是开始查找beanB【applyPropertyValues();】中的【resolveValueIfNecessary();】调用getSingleton() ②
+		7.调用doGetBean()方法，和上面beanA的过程一样，到缓存中查找beanB，没有则创建，然后给beanB填充属性
+		8.此时beanB依赖于beanA，调用getSingleton()获取beanA，依次从一级、二级、三级缓存中查找，此时从三级缓存中获取到beanA的创建工厂，通过创建工厂获取到singletonObject，此时
+			这个singletonObject指向的就是上面在doCreateBean()方法中实例化的beanA
+		9.这样beanB就获取到了beanA的依赖，如果有AOP，在【initializeBean()】中的后置通知方法对对象进行包装并将代理的对象返回，于是beanB顺利完成实例化，
+			并将beanA从三级缓存移动到二级缓存中
+		10.随后beanA继续属性填充，此时也获取到了beanB，beanA也随之完成创建，回到getSingleton()方法中继续向下执行，将beanA从一+-级缓存移动到以及缓存
+
+
+
+7.mybatis
+
+	开启mybatis：
+
+	String resource = "mybatis-config.xml";
+    	Reader reader = Resources.getResourceAsReader(resource);				以流的方式读取config文件
+    	SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);	返回一个我们下一步需要的DefaultSqlSessionFactory	
+    	SqlSession session = sqlSessionFactory.openSession();				创建出执行器executor封装进sqlSession中返回
+
+	Executor：
+		CachingExecutor：启用于二级缓存时的执行器，执行方法时会先到二级缓存中判断
+		BaseExecutor：
+			SimpleExecutor：最简单的执行器，根据对应的sql直接执行即可，不会做一些额外的操作；拼接完SQL之后，直接交给 StatementHandler  去执行。
+			BatchExecutor：通过批量操作来优化性能。通常需要注意的是批量更新操作，由于内部有缓存的实现，使用完成后记得调用flushStatements来清除缓存。
+			ReuseExecutor ：可重用的执行器，重用的对象是Statement，也就是说该执行器会缓存同一个sql的Statement，省去Statement的重新创建，优化性能。
+
+
+	一级缓存：
+	一级缓存是默认开启的，作用域是session级别的【sqlsession】，在commit之前，第一次查询结果换以key value的形式存起来，如果有相同的key进来，直接返回value，
+	这样有助于减轻数据的压力。并且当commit或者rollback的时候会清除缓存，并且当执行insert、update、delete的时候也会清除缓存。
+	
+	二级缓存：
+	二级缓存是手动开启的，作用域为sessionfactory（也可以说MapperStatement级缓存，也就是一个namespace就会有一个缓存），因为二级缓存的数据不一定都是存储到内存中，
+	它的存储介质多种多样实现二级缓存的时候，MyBatis要求返回的POJO必须是可序列化的，也就是要求实现Serializable接口，如果存储在内存中的话，实测不序列化也可以的。
+	如果开启了二级缓存的话，你的Executor将会被装饰成CachingExecutor，缓存是通过CachingExecutor来操作的，查询出来的结果会存在statement中的cache中，若有更新，
+	删除类的操作默认就会清空该MapperStatement的cache（也可以通过修改xml中的属性，让它不执行），不会影响其他的MapperStatement。
+	
+	mybatis plus
+		Mapper继承baseMapper，添加条件时使用queryWrapper
+
+8.ActiveMQ 消息队列 消息中间件
+	Nacos + Openfeign
+	开启@EnableFeignClients(basePackages = "com.qsnh.gulimall.product.feign")注解
+	创建接口实现@FeignClient("gulimall-coupon")
+	自动注入接口，调用方法
+
+	能干嘛：	1.解耦：要做到系统解耦，当新的模块接进来时，可以做到代码改动最小；能够解耦
+			比如购票，完成后要添加功能，比如发送短信，发送邮件，只需要订阅生产者即可，不需要调整生产者
+		2.削峰：设置流量缓冲池，可以让后端系统按照自身吞吐能力进行消费，不被冲垮；能够削峰
+			消息在队列中，消费者可以按照自己的能力去消费，速度降低当不会挂掉
+		3.异步：强弱依赖梳理能将非关键调用链路的操作异步化，并提升整体系统的吞吐能力；能够异步
+			同步：食堂打饭，排队等待        异步：饭店点菜，不用等待
+		抵御洪峰流量，达到保护主业务的目的，消峰
+
+	后台默认端口是61616
+	前台端口8161
+
+	目的地：队列、主题
+		一对一：队列
+		一对多：主题
+
+	主题：	1.生产者将消息发布到topic中，每个消息可以有多个消费者，属于1：N的关系
+		2.生产者和消费者之间有时间上的相关性。订阅某个主题的消费者只能消费自它订阅之后发布的消息
+		3.生产者生产时，topic不保存消息它是无状态的不落地，假如无人订阅就去生产，那就是一条废消息，所以一般先启动消费者，再启动生产者
+
+	JMS步骤：（javaEE 13种协议中的一种）
+		1.创建一个connection factory
+		2.通过connection factory来创建JMS connection
+		3.启动JMS connection，创建JMS session（两个属性，事务和签收）
+		4.创建JMS destination(队列或者主题)
+		5.创建JMS producer或者创建JMS message并设置destionation
+		6.创建JMS consumer或者是注册一个JMS message listener
+		7.发送或者接受JMS message
+		8.关闭所有JMS资源
+	
+	同步阻塞方式（receive）：订阅者或者接受者调用MessageConsumer的receive()方法来接收消息，receive方法在能够接收到消息之前将一直阻塞
+	
+	异步非阻塞方式（监听器onMessage）：
+		订阅者或接收者通过MessageConsumer的setMessageListener（MessageListener  listener）注册一个消息监听器
+		当消息到达之后，系统自动调用监听器MessageListener的onMessage（Message  message）方法
+
+	组成结构和特点：
+		1.JMS provider：实现JMS接口和规范的消息中间件
+		2.JMS producer：消息生产者，创建和发送JMS消息的客户端应用
+		3.JMS consumer：消息消费者，接收和处理JMS消息的客户端应用
+		4.JMS message：
+			1.消息头：
+				1.JMSDestination：给消息设置目的地
+				2.JMSDeliveryMode:持久和非持久模式	队列默认持久
+					持久消息：应该被传送一次，成功一次，JMS提供者出现故障，消息不会丢失，会在服务器恢复之后再次传递
+					非持久消息：最多会传送一次，服务器出现故障永久消失
+				3.JMSExpiration:设置过期时间，默认用不过期
+				4.JMSPriority：优先级 0-9  默认4级，保证加急消息要先于普通消息到达
+				5.JMSMessageID：唯一识别每个消息的标识
+
+			2.消息体：封装具体的消息数据	发送和接收的消息类型必须一致
+				1.TextMessage：	普通字符串消息，包含一个string
+				2.MapMessage：	一个Map类型的消息，key为string类型，而值为java的基本类型
+				3.BytesMessage	二进制数组消息，包好一个byte[]
+				4.StreamMessage：	java数据流消息，用标准流操作来顺序的填充和读取
+				5.ObjectMessage：	对象消息，包含一个可序列化的java对象
+				
+			3.消息属性：如果需要除消息头以外的值，可以使用消息的属性
+				识别/去重/重点标注等操作非常有用的方法
+	持久化：
+		1.队列模式默认持久化，消息不会消失
+		2.主题 - 发布 - 订阅
+			1.先运行一次消费者，等于向MQ注册，类似我订阅了这个主题
+			2.然后再运行生产者发送消息，此时
+			3.无论消费者是否在线，都会收到，不在线的话，下次连接的时候，会把没有收到过的消息都接收下来
+
+	        	//两个参数，第一个事务，第二个签收
+        		Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+
+	事务：	事务偏生产者/签收偏消费者
+		生产者和消费者都需要提交才能真正在MQ中入队和出队	消费者不提交会重复消费
+
+	签收：	非事务下：
+			Session.AUTO_ACKNOWLEDGE	自动签收（默认）
+			Session.CLIENT_ACKNOWLEDGE	手动签收		调用acknowledge方法手动签收
+		事务下：
+			事务下commit自动签收,CLIENT_ACKNOWLEDGE无效
+			事务下未commit，CLIENT_ACKNOWLEDGE， acknowledge签收无效
+		事务 > 签收
+
+	Broker：	嵌入式的activemq，在代码中直接使用
+
+	传输协议：TCP（默认）
+		NIO
+
+	持久化：
+		1.AMQ：文件存储形式，适用于5.3之前
+		2.kahaDB(默认)：基于日志文件，5.4开始 类似AOF
+			消息存储使用一个事务日志和仅仅用一个索引文件来存储它所有的地址
+			db-1.log存储消息记录
+			db.data 数据索引，通过索引找数据
+			db.free 记录空闲ID
+			db.redo 宕机后恢复索引
+			lock 读写锁
+		3.JDBC：
+			1.添加mysql驱动到lib文件夹中
+			2.jdbcPersistenceAdapter配置
+			3.数据库连接池配置
+			4.建仓SQL和建表说明（默认自动创建，第一次后改为false）
+				数据库三张表：
+					1.ACTIVEMQ_MSGS:消息数据（ID，目的地，消息体）
+					2.ACTIVEMQ_ACKS:订阅关系
+					3.ACTIVEMQ_LOCK:集群环境下使用，记录哪个Broker是MASTER；
+		4.Journal
+			不用每次消息过来都写入数据库，先保存到journal文件中，如果在没有同步到JDBC之前被消费则不会存入
+
+		5.LevelDB：比kahaDB效率高
+
+	异步发送：在指定同步发送的方式或者在未使用事务的前提下使用同步发送，每一次都会同步发送阻塞producer直到broker返回一个确认，表示消息已经安全的持久化到磁盘。
+		允许在失败的情况下有少量数据丢失，满足这个特点，可以使用异步发送来提高生产率
+		开启方法url = “tcp://locahost:61616?jms.useAsyncSend=true”
+			activeMQConnectionFactory.setUseAsyncSend(true)
+
+		异步发送如何确认成功：
+			生产者会认为所有send的消息都被成功发送到MQ，如果MQ突然宕机，未被发送的消息会丢失，正确的发送方法是需要接收回调
+			设置messageID，send方法传入重写回调函数
+
+	延时投递 定时投递：
+		activeMQ.xml文件中的broker，schedulerSupport=“true”开启延时定时投递
+
+	消费重试：
+		引起消息重发：
+			1.使用了事务，在session中进行了回滚
+			2.使用了事务，在commit之前关闭或者没有commit
+			3.在CLIENT_ACKNOWLEDGE手动签收模式下，session调用了recover()重试
+		重发的时间间隔和重发次数：
+			一秒钟6次
+		有毒消息Poison ACK：
+			一个消息被redelivedred重发超过默认的最大重发次数(默认6次)时，消费端会给MQ发送一个“poison ack”表示这个消息有毒，告诉broker不要再发送
+			broker会把这个消息放入DLQ（死信队列）
+
+	如何保证消息不被重复消费，幂等性问题
+		如果是做数据库的插入操作，可以给消息做一个唯一主键，就算出现重复消费问题也会导致主键冲突
+		
+		准备一个第三方服务做消费记录。以redis为例，给消息分配一个全局id，只要消费过该消息，将<id,message>以K-V形式写入redis。消费者开始消费前去redis中查询消费记录即可
+		
+
+9.servlet
+
+	内置对象
+		request：封装客户端的请求，其中包含来自GET或POST请求的参数；
+		response：封装服务器对客户端的响应；
+		pageContext：通过该对象可以获取其他对象；
+		session：封装用户会话的对象；
+		application：封装服务器运行环境的对象；
+		out：输出服务器响应的输出流对象；
+		config：Web应用的配置对象；
+		page：JSP页面本身（相当于Java程序中的this）；
+		exception：封装页面抛出异常的对象。
+
+	JSP中的四种作用域
+		page代表与一个页面相关的对象和属性。
+    		request代表与Web客户机发出的一个请求相关的对象和属性。一个请求可能跨越多个页面，涉及多个Web组件；需要在页面显示的临时数据可以置于此作用域。
+    		session代表与某个用户与服务器建立的一次会话相关的对象和属性。跟某个用户相关的数据应该放在用户自己的session中。
+   		application代表与整个Web应用程序相关的对象和属性，它实质上是跨越整个Web应用程序，包括多个页面、请求和会话的一个全局作用域。
+
+
+	禁用cookie
+		Session不会因为浏览器的关闭而删除。但是存有session_id的cookie的默认过期时间是会话级别。
+		也就是用户关闭了浏览器，那么存储在客户端的session_id便会丢失，但是存储在服务器端的session数据并不会被立即删除。
+		从客户端即浏览器看来，好像session被删除了一样（因为我们丢失了session_id，找不到原来的session数据了）。
+
+	JSP和Servlet是什么关系、
+		JSP侧重于视图，Servlet更侧重于控制逻辑，在MVC架构模式中，JSP适合充当视图（view）而Servlet适合充当控制器（controller）。
+		有人说，Servlet就是在Java中写HTML，而JSP就是在HTML中写Java代码，当然这个说法是很片面且不够准确的。
+	
+		
+
+10.linux
+	ifconfig 【查看端口号】
+	mv 文件名 目录名 【移动文件】
+	cp -r 文件名 目录名 【复制文件】
+	mkdir 文件夹名 【创建新文件夹】
+	tar -zxvf 文件名 【解压文件】
+	ps -ef|grep 进程名 |grep -v grep  【查看进程】
+	netstat -anp | grep 
+
+11.时间复杂度
+	排序方法 		时间复杂度(平均)	时间复杂度(最坏) 	时间复杂度(最好) 	空间复杂度 	稳定性 	复杂性
+	直接插入排序 	O(n2) 		O(n2) 		O(n) 		O(1) 		稳定 	简单
+	希尔排序 		O(nlogn)	 	O(n2) 		O(n1.3) 		O(1) 		不稳定 	较复杂
+	直接选择排序 	O(n2) 		O(n2) 		O(n2) 		O(1) 		不稳定 	简单
+	堆排序 		O(nlogn)	 	O(nlogn) 		O(nlogn) 		O(1) 		不稳定 	较复杂
+	冒泡排序 		O(n2) 		O(n2) 		O(n) 		O(1) 		稳定	简单
+	快速排序 		O(nlogn)	 	O(n2) 		O(nlogn) 		O(nlogn) 		不稳定 	较复杂
+	归并排序 		O(nlogn)	 	O(nlogn) 		O(nlogn) 		O(n) 		稳定	较复杂
+	基数排序 		O(d(n+r)) 	O(d(n+r)) 	O(d(n+r)) 	O(n+r) 		稳定	较复杂
+
+	顺序查找：时间复杂度：O(n)
+	二分查找：时间复杂度：O(logN)
+
+12.计算机网络
+	tcp/ip:
+		5 应用层		Http	
+				DNS：将URL转换为ip地址	
+				FTP：文件传输协议	
+				SMTP：电子邮件协议，三个阶段：建立连接，邮件传送，连接释放
+				TELNET：远程登录协议，可以通过它远程登录来控制别的计算机
+				SNMP：简单网络管理协议
+				TFTP：通用文件传输协议
+
+		4 运输层		TCP：支持FTP、TELNET、SMTP
+				UDP：支持TFTP、SNMP、DNS
+
+		3 网络层
+		2 数据链路层
+		1 物理层
+
+	三次握手
+		在TCP报文段中 有标志位 
+		SYN：请求一个连接
+		FIN：释放一个连接
+		ACK：确认有效
+
+		客户端————>服务端
+		            SYN=1
+		客户端<————服务端
+		       ACK=1  SYN=1
+		客户端————>服务端
+		            ACK=1
+
+	四次挥手
+		客户端————>服务端
+		            	FIN=1
+		客户端<————服务端
+		            	ACK=1
+		客户端<————服务端
+			FIN=1
+		客户端————>服务端
+			ACK=1
+
+		客户端最后会等待  2MSL 两分钟， 客户端不确定服务端是否收到自己发送的ACK，等待2MSL为 FIN重试时间+FIN传输时间
+
+						传输形式		传输效率		所需资源		首部字节
+	TCP	面向连接		可靠		字节流		慢		多		20-60		文件传输
+	UDP	无连接		不可靠		数据报文段	快		少		8		语音
+13.NIO
+	https://zhuanlan.zhihu.com/p/127911769
+ 	
