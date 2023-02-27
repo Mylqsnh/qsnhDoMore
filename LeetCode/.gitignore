@@ -1,0 +1,40 @@
+/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.class
+*.ipr
+/.mvn/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+/**/target/
+/**/etc/sdk_project/
+/**/ignore/
+/**/Version.java
+### VS Code ###
+.vscode/
+*.lst
+*.jar
+!docker/fortress/source/*.jar
+*.interp
+*.tokens
+*.flattened-pom.xml
+/diff.json
+/test-report/result.txt
