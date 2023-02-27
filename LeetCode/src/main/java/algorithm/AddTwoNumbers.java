@@ -8,6 +8,11 @@ public class AddTwoNumbers {
         ListNode l2 = new ListNode(8);
         ListNode listNode = addTwoNumbers(l1, l2);
         while (listNode != null) {
+            assert listNode.val == 7;
+            assert listNode.val == 0;
+            assert listNode.val == 8;
+        }
+        while (listNode != null) {
             System.out.print(listNode.val);
             System.out.print(" -> ");
             listNode = listNode.next;

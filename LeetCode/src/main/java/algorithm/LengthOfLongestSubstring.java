@@ -5,7 +5,10 @@ import java.util.HashMap;
 public class LengthOfLongestSubstring {
     public static void main(String[] args) {
 
-        System.out.println(lengthOfLongestSubstring("abcdeacfg"));
+        int max = lengthOfLongestSubstring("abcdeacfg");
+
+        assert max == 6;
+        System.out.println(max);
 
     }
 

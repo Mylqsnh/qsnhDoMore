@@ -7,6 +7,8 @@ public class TwoSum {
 
     public static void main(String[] args) {
         int[] nums = {1, 23, 49, 10};
+        assert nums[0] == 0;
+        assert nums[1] == 2;
         System.out.println(Arrays.toString(twoSum(nums, 50)));
     }
 
