@@ -2,7 +2,7 @@ package algorithm;
 
 import java.util.HashMap;
 
-public class LengthOfLongestSubstring {
+public class LengthOfLongestSubstring_3 {
     public static void main(String[] args) {
 
         int max = lengthOfLongestSubstring("abcdeacfg");

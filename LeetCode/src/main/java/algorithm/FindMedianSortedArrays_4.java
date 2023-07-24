@@ -2,7 +2,7 @@ package algorithm;
 
 import java.util.Arrays;
 
-public class FindMedianSortedArrays {
+public class FindMedianSortedArrays_4 {
 
 
     public static void main(String[] args) {

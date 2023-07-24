@@ -3,7 +3,7 @@ package algorithm;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class TwoSum {
+public class TwoSum_1 {
 
     public static void main(String[] args) {
         int[] nums = {1, 23, 49, 10};
