@@ -1,5 +1,7 @@
 package algorithm.linked;
 
+import java.util.Arrays;
+
 public class MergeTwoLists_21 {
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode head = new ListNode();
@@ -30,32 +32,9 @@ public class MergeTwoLists_21 {
     public static void main(String[] args) {
 //        l1 = [1,2,4], l2 = [1,3,4]
         ListNode listNode = mergeTwoLists(
-                new ListNode(1, new ListNode(2, new ListNode(4))),
-                new ListNode(1, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, new ListNode(7)))))));
+                new ListNode(Arrays.asList(1, 2, 4)),
+                new ListNode(Arrays.asList(1, 3, 4, 5, 6)));
 
-        while (listNode != null) {
-            System.out.print(listNode.val);
-            listNode = listNode.next;
-            if (listNode != null) {
-                System.out.print(" -> ");
-            }
-        }
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+        listNode.print();
     }
 }
