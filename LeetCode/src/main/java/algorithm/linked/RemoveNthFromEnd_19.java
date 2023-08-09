@@ -8,29 +8,22 @@ public class RemoveNthFromEnd_19 {
         listNode.print();
     }
 
-    private static ListNode removeNthFromEnd(ListNode listNode, int x) {
-        ListNode head = new ListNode(-1);
-        head.next = listNode;
-
-        ListNode fromEnd = findFromEnd(listNode, x + 1);
-        fromEnd.next = fromEnd.next.next;
-
-        return head.next;
-    }
-
-    private static ListNode findFromEnd(ListNode listNode, int x) {
-        ListNode p1 = listNode;
-        ListNode p2 = listNode;
-
-        for (int i = 0; i < x; i++) {
-            p1 = p1.next;
+    private static ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        if (head == null || n == 0) {
+            return head;
         }
-
-        while (p1 != null) {
-            p1 = p1.next;
-            p2 = p2.next;
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
         }
-
-        return p2;
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 }
