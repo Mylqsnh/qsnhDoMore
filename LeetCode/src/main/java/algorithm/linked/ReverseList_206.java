@@ -2,7 +2,7 @@ package algorithm.linked;
 
 import java.util.Arrays;
 
-public class ReverseLis_206 {
+public class ReverseList_206 {
 
     public static void main(String[] args) {
         ListNode listNode = new ListNode(Arrays.asList(1, 2, 3, 4, 5));
@@ -17,7 +17,6 @@ public class ReverseLis_206 {
         }
 
         ListNode last = reverseList(head.next);
-
         head.next.next = head;
         head.next = null;
 
