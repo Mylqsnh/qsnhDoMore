@@ -6,12 +6,12 @@ public class ReverseList_206 {
 
     public static void main(String[] args) {
         ListNode listNode = new ListNode(Arrays.asList(1, 2, 3, 4, 5));
-        ListNode listNode1 = reverseList(listNode);
+        ListNode listNode1 = new ReverseList_206().reverseList(listNode);
         listNode1.print();
     }
 
 
-    public static ListNode reverseList(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }

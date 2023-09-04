@@ -10,11 +10,11 @@ public class MergeKLists_23 {
                 new ListNode(Arrays.asList(1, 4, 5)),
                 new ListNode(Arrays.asList(1, 3, 4)),
                 new ListNode(Arrays.asList(2, 6))};
-        ListNode listNode = mergeKLists(lists);
+        ListNode listNode = new MergeKLists_23().mergeKLists(lists);
         listNode.print();
     }
 
-    private static ListNode mergeKLists(ListNode[] lists) {
+    private ListNode mergeKLists(ListNode[] lists) {
         ListNode head = new ListNode(-1);
         ListNode p = head;
 

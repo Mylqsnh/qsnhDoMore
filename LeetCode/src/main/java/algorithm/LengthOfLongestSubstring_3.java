@@ -5,14 +5,14 @@ import java.util.HashMap;
 public class LengthOfLongestSubstring_3 {
     public static void main(String[] args) {
 
-        int max = lengthOfLongestSubstring("abcdeacfg");
+        int max = new LengthOfLongestSubstring_3().lengthOfLongestSubstring("abcdeacfg");
 
         assert max == 6;
         System.out.println(max);
 
     }
 
-    public static int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
         int max = 0, start = 0;
         for (int i = 0; i < s.length(); i++) {

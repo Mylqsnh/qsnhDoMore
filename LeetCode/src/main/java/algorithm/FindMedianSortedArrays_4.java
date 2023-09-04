@@ -8,12 +8,12 @@ public class FindMedianSortedArrays_4 {
     public static void main(String[] args) {
         int[] a1 = {1,5, 6};
         int[] a2 = {3,4, 7};
-        double medianSortedArrays = findMedianSortedArrays(a1, a2);
+        double medianSortedArrays = new FindMedianSortedArrays_4().findMedianSortedArrays(a1, a2);
         System.out.println(medianSortedArrays);
     }
 
 
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
         if (nums1.length == 0) {
             return getMedian(nums2);

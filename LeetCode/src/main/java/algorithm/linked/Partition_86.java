@@ -7,12 +7,12 @@ public class Partition_86 {
         //[1, 4, 3, 2, 5, 2]
         // 3
         ListNode listNode = new ListNode(Arrays.asList(1, 4, 3, 2, 5, 2));
-        ListNode partition = partition(listNode, 3);
+        ListNode partition = new Partition_86().partition(listNode, 3);
         partition.print();
         listNode.print();
     }
 
-    public static ListNode partition(ListNode head, int x) {
+    public ListNode partition(ListNode head, int x) {
         ListNode head1 = new ListNode(-1);
         ListNode head2 = new ListNode(-1);
 

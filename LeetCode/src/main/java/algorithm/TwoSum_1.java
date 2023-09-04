@@ -9,10 +9,10 @@ public class TwoSum_1 {
         int[] nums = {1, 23, 49, 10};
         assert nums[0] == 0;
         assert nums[1] == 2;
-        System.out.println(Arrays.toString(twoSum(nums, 50)));
+        System.out.println(Arrays.toString(new TwoSum_1().twoSum(nums, 50)));
     }
 
-    public static int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> integerIntegerHashMap = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (integerIntegerHashMap.containsKey(target - nums[i])) {

@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class RemoveNthFromEnd_19 {
     public static void main(String[] args) {
-        ListNode listNode = removeNthFromEnd(new ListNode(Arrays.asList(1, 2, 3, 4, 5)), 2);
+        ListNode listNode = new RemoveNthFromEnd_19().removeNthFromEnd(new ListNode(Arrays.asList(1, 2, 3, 4, 5)), 2);
         listNode.print();
     }
 
-    private static ListNode removeNthFromEnd(ListNode head, int n) {
+    private ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
         if (head == null || n == 0) {

@@ -11,12 +11,12 @@ public class HasCycle_141 {
         List<ListNode> indexArr = listNode.getIndexArr();
 
         indexArr.get(indexArr.size() - 1).next = indexArr.get(2);
-        boolean b = hasCycle(listNode);
+        boolean b = new HasCycle_141().hasCycle(listNode);
         System.out.println(b);
         assert b == true;
     }
 
-    private static boolean hasCycle(ListNode head) {
+    private boolean hasCycle(ListNode head) {
 
         ListNode slow = head;
         ListNode fast = head;

@@ -14,12 +14,12 @@ public class GetIntersectionNode_160 {
         List<ListNode> indexArr2 = listNode2.getIndexArr();
         indexArr2.get(indexArr2.size() - 1).next = indexArr1.get(3);
 
-        ListNode intersectionNode = getIntersectionNode(listNode1, listNode2);
+        ListNode intersectionNode = new GetIntersectionNode_160().getIntersectionNode(listNode1, listNode2);
         System.out.println(intersectionNode.val);
         assert intersectionNode.val == 6;
     }
 
-    private static ListNode getIntersectionNode(ListNode head1, ListNode head2) {
+    private ListNode getIntersectionNode(ListNode head1, ListNode head2) {
         ListNode p1 = head1;
         ListNode p2 = head2;
 

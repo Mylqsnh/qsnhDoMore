@@ -3,7 +3,17 @@ package algorithm.linked;
 import java.util.Arrays;
 
 public class MergeTwoLists_21 {
-    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+    public static void main(String[] args) {
+//        l1 = [1,2,4], l2 = [1,3,4]
+        ListNode listNode = new MergeTwoLists_21().mergeTwoLists(
+                new ListNode(Arrays.asList(1, 2, 4)),
+                new ListNode(Arrays.asList(1, 3, 4, 5, 6)));
+
+        listNode.print();
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode head = new ListNode();
         ListNode index = head;
         while (list1 != null && list2 != null) {
@@ -27,14 +37,5 @@ public class MergeTwoLists_21 {
         }
 
         return head.next;
-    }
-
-    public static void main(String[] args) {
-//        l1 = [1,2,4], l2 = [1,3,4]
-        ListNode listNode = mergeTwoLists(
-                new ListNode(Arrays.asList(1, 2, 4)),
-                new ListNode(Arrays.asList(1, 3, 4, 5, 6)));
-
-        listNode.print();
     }
 }
