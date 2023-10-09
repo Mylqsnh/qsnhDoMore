@@ -6,8 +6,8 @@ public class FindMedianSortedArrays_4 {
 
 
     public static void main(String[] args) {
-        int[] a1 = {1, 5, 6};
-        int[] a2 = {3, 4, 7};
+        int[] a1 = {1,5, 6};
+        int[] a2 = {3,4, 7};
         double medianSortedArrays = new FindMedianSortedArrays_4().findMedianSortedArrays(a1, a2);
         System.out.println(medianSortedArrays);
     }
@@ -38,7 +38,7 @@ public class FindMedianSortedArrays_4 {
                 l1++;
             }
             index++;
-            if (l1 == nums1.length && l2 != nums2.length) {
+            if (l1 == nums1.length&& l2 != nums2.length) {
                 while (l2 != nums2.length) {
                     temp[index] = nums2[l2];
                     l2++;
@@ -69,7 +69,7 @@ public class FindMedianSortedArrays_4 {
         int i = nums.length % 2;
         double median;
         if (i == 0) {
-            median = ((nums[nums.length / 2 - 1]) + (nums[nums.length / 2])) / (double) 2;
+            median = ((nums[nums.length / 2 - 1 ]) + ( nums[nums.length / 2]) ) / (double)2;
         } else {
             median = nums[(nums.length - 1) / 2];
         }

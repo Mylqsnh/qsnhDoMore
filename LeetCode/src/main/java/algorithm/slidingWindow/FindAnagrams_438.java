@@ -11,7 +11,6 @@ public class FindAnagrams_438 {
         List<Integer> abc = new FindAnagrams_438().findAnagrams(a, "abc");
         System.out.println(abc);
     }
-
     public List<Integer> findAnagrams(String s, String p) {
         if (s == null || p == null) return List.of();
         ArrayList<Integer> result = new ArrayList<>();
