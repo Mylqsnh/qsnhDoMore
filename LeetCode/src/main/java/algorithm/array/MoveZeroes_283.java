@@ -2,7 +2,7 @@ package algorithm.array;
 
 public class MoveZeroes_283 {
     public static void main(String[] args) {
-        int[] nums = {0,1,0,3,12};
+        int[] nums = {0, 1, 0, 3, 12};
         new MoveZeroes_283().moveZeroes(nums);
         for (int num : nums) {
             System.out.println(num);

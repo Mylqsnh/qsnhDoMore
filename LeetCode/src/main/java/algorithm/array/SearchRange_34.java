@@ -2,7 +2,7 @@ package algorithm.array;
 
 public class SearchRange_34 {
     public static void main(String[] args) {
-        int [] nums2 = {1,2,2,2,3,4};
+        int[] nums2 = {1, 2, 2, 2, 3, 4};
         int[] ints1 = new SearchRange_34().searchRange(nums2, 2);
         for (int i : ints1) {
             System.out.println(i);
@@ -37,7 +37,7 @@ public class SearchRange_34 {
             }
         }
 
-        int ans = low? left : right;
+        int ans = low ? left : right;
         if (ans < 0 || ans >= nums.length) {
             return -1;
         }

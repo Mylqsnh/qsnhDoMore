@@ -1,6 +1,5 @@
 package algorithm.linked;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class HasCycle_141 {
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast) {
+            if (slow == fast) {
                 return true;
             }
         }

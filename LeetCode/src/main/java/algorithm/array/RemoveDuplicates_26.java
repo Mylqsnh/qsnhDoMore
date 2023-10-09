@@ -2,7 +2,7 @@ package algorithm.array;
 
 public class RemoveDuplicates_26 {
     public static void main(String[] args) {
-        int[] temp = {0, 0, 1, 1, 2, 2, 2 ,3, 3, 4};
+        int[] temp = {0, 0, 1, 1, 2, 2, 2, 3, 3, 4};
         int i = new RemoveDuplicates_26().removeDuplicates(temp);
         assert i == 5;
 
