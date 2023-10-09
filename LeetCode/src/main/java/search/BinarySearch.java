@@ -3,11 +3,11 @@ package search;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int [] nums = {-1,0,3,5,9,12};
+        int[] nums = {-1, 0, 3, 5, 9, 12};
         int search = search(nums, 9);
         System.out.println(search);
 
-        int [] nums2 = {1,2,2,2,3,4};
+        int[] nums2 = {1, 2, 2, 2, 3, 4};
         int i = leftBound(nums2, 2);
         System.out.println(i);
 

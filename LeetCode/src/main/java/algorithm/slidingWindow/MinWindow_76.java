@@ -37,7 +37,7 @@ public class MinWindow_76 {
 
                 if (right - left < len) {
                     start = left;
-                    len = right -left;
+                    len = right - left;
                 }
 
                 char d = s.charAt(left);

@@ -5,13 +5,14 @@ import java.util.Arrays;
 public class HeapSort {
 
     public static void main(String[] args) {
-        int[] arr = {4,3,2,7,1,0,9,8,6,10,20,13};
+        int[] arr = {4, 3, 2, 7, 1, 0, 9, 8, 6, 10, 20, 13};
         System.out.println("before：");
         System.out.println(Arrays.toString(arr));
         heapSort(arr);
         System.out.println("\nafter：");
         System.out.println(Arrays.toString(arr));
     }
+
     public static void heapSort(int[] arr) {
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {

@@ -1,13 +1,11 @@
 package sort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class RadixSort {
 
     public static void main(String[] args) {
-        int[] arr = {4,3,2,7,1,0,9,8,6,10,20,13};
+        int[] arr = {4, 3, 2, 7, 1, 0, 9, 8, 6, 10, 20, 13};
         System.out.println("before：");
         System.out.println(Arrays.toString(arr));
         radixSort(arr);
@@ -35,7 +33,7 @@ public class RadixSort {
             int output[] = new int[arr.length];
 
             for (int i : arr) {
-                int index = (i / (int)Math.pow(10, digit - 1)) % 10;
+                int index = (i / (int) Math.pow(10, digit - 1)) % 10;
                 count[index]++;
             }
 
@@ -44,7 +42,7 @@ public class RadixSort {
             }
 
             for (int i = arr.length - 1; i >= 0; i--) {
-                int index = (arr[i] / (int)Math.pow(10, digit - 1)) % 10;
+                int index = (arr[i] / (int) Math.pow(10, digit - 1)) % 10;
                 output[count[index] - 1] = arr[i];
                 count[index]--;
             }
