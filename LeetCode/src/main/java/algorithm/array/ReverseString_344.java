@@ -3,7 +3,7 @@ package algorithm.array;
 public class ReverseString_344 {
 
     public static void main(String[] args) {
-        char[] s = new char[]{'h','e','l','l','o'};
+        char[] s = new char[]{'h', 'e', 'l', 'l', 'o'};
         new ReverseString_344().reverseString(s);
 
         System.out.println(s);

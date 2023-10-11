@@ -16,10 +16,10 @@ public class FourSum_18 {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
 
-        return nSumTarget(nums, 4, 0, (long)target);
+        return nSumTarget(nums, 4, 0, (long) target);
     }
 
-    public List<List<Integer>> nSumTarget(int[] nums, int n, int start ,Long target) {
+    public List<List<Integer>> nSumTarget(int[] nums, int n, int start, Long target) {
 
         int sz = nums.length;
         List<List<Integer>> res = new ArrayList<>();
