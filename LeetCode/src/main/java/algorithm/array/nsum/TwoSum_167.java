@@ -1,4 +1,4 @@
-package algorithm.array;
+package algorithm.array.nsum;
 
 public class TwoSum_167 {
 

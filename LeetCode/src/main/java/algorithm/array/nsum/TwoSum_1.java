@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.array.nsum;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +21,6 @@ public class TwoSum_1 {
             integerIntegerHashMap.put(nums[i], i);
         }
 
-        return null;
+        return new int[0];
     }
 }
