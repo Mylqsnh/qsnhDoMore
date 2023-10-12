@@ -1,4 +1,4 @@
-package algorithm.array;
+package algorithm.array.binarySearch;
 
 public class Search_704 {
     public static void main(String[] args) {
