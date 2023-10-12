@@ -1,24 +1,14 @@
-package algorithm;
+package algorithm.linked;
+
+import java.util.Arrays;
 
 public class AddTwoNumbers_2 {
 
     public static void main(String[] args) {
-
-        ListNode l1 = new ListNode(9, new ListNode(9, new ListNode(7)));
+        ListNode l1 = new ListNode(Arrays.asList(9, 9, 7));
         ListNode l2 = new ListNode(8);
         ListNode listNode = new AddTwoNumbers_2().addTwoNumbers(l1, l2);
-        while (listNode != null) {
-            assert listNode.val == 7;
-            assert listNode.val == 0;
-            assert listNode.val == 8;
-        }
-        while (listNode != null) {
-            System.out.print(listNode.val);
-            System.out.print(" -> ");
-            listNode = listNode.next;
-        }
-        System.out.print("null");
-
+        listNode.print();
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -54,23 +44,5 @@ public class AddTwoNumbers_2 {
         }
 
         return head;
-    }
-}
-
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }
