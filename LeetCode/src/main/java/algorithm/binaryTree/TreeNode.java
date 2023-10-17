@@ -33,6 +33,9 @@ public class TreeNode {
         if (index >= list.size()) {
             return null;
         }
+        if (list.get(index) == null) {
+            return null;
+        }
         TreeNode root = new TreeNode(list.get(index));
         root.left = constructTreeRecursive(list, 2 * index + 1);
         root.right = constructTreeRecursive(list, 2 * index + 2);
