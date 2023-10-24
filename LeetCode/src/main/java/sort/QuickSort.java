@@ -12,12 +12,48 @@ public class QuickSort {
         System.out.println(Arrays.toString(arr));
     }
 
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int pivot = getPivot(arr, low, high);
+
+        quickSort(arr, low, pivot - 1);
+        quickSort(arr, pivot + 1, high);
+    }
+
+    static int getPivot(int [] arr, int low, int high) {
+        int pivot = arr[low];
+        int l = low;
+        int r = high;
+
+        while (l < r) {
+
+            while (l < r && arr[r] >= pivot) {
+                r--;
+            }
+
+            while (l < r && arr[l] <= pivot) {
+                l++;
+            }
+
+            if (l < r) {
+                int temp = arr[r];
+                arr[r] = arr[l];
+                arr[l] = temp;
+            }
+        }
+
+        arr[low] = arr[l];
+        arr[l] = pivot;
+        return l;
+    }
     /**
      * @param arr:待排序的数组
      * @param low：左边低位指针
      * @param high：右边高位指针
      */
-    public static void quickSort(int[] arr, int low, int high) {
+    public static void quickSort2(int[] arr, int low, int high) {
 
         if (low >= high) {
             return;
