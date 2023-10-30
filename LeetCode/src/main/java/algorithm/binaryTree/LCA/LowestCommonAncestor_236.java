@@ -1,4 +1,6 @@
-package algorithm.binaryTree;
+package algorithm.binaryTree.LCA;
+
+import algorithm.binaryTree.TreeNode;
 
 import java.util.Arrays;
 

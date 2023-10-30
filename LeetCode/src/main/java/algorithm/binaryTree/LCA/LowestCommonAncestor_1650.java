@@ -1,4 +1,4 @@
-package algorithm.binaryTree;
+package algorithm.binaryTree.LCA;
 
 public class LowestCommonAncestor_1650 {
     public static void main(String[] args) {

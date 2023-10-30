@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
     TreeNode() {
     }
@@ -15,13 +15,13 @@ public class TreeNode {
         this.val = val;
     }
 
-    TreeNode(Integer val) {
+    public TreeNode(Integer val) {
         if (val != null) {
             this.val = val;
         }
     }
 
-    TreeNode(List<Integer> list) {
+    public TreeNode(List<Integer> list) {
         if (list == null || list.isEmpty()) return;
         TreeNode treeNode = constructTreeRecursive(list, 0);
         this.val = treeNode.val;
