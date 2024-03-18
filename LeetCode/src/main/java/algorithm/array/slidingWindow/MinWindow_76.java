@@ -27,7 +27,7 @@ public class MinWindow_76 {
             char c = s.charAt(right);
             right++;
             if (need.containsKey(c)) {
-                window.put(c, need.getOrDefault(c, 0) + 1);
+                window.put(c, window.getOrDefault(c, 0) + 1);
                 if (window.get(c).equals(need.get(c))) {
                     valid++;
                 }
