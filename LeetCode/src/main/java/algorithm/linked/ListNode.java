@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ArrayList<ListNode> indexArr;
+    public ArrayList<ListNode> indexArr;
 
     ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 
@@ -21,7 +21,7 @@ public class ListNode {
         this.next = next;
     }
 
-    ListNode(List<Integer> list) {
+    public ListNode(List<Integer> list) {
         ListNode head = new ListNode(-1);
         ListNode point = head;
         for (int i : list) {
