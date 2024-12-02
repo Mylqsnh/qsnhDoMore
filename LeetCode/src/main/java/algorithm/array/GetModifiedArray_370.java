@@ -34,7 +34,7 @@ public class GetModifiedArray_370 {
             diff = new int[length];
             diff[0] = nums[0];
             for (int i = 1; i < length; i++) {
-                diff[i] = diff[i] - diff[i - 1];
+                diff[i] = nums[i] - nums[i - 1];
             }
         }
 
